@@ -1,24 +1,19 @@
 plugins {
     id("com.android.application")
-    // START: FlutterFire Configuration
     id("com.google.gms.google-services")
-    // END: FlutterFire Configuration
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
     namespace = "com.example.manajemen_keuangan"
-    compileSdk = flutter.compileSdkVersion
+    // TURUNKAN KE 34: Angka paling stabil untuk semua library Flutter saat ini
+    compileSdk = 34 
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        // Menggunakan Java 17 sesuai konfigurasi proyek Anda
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-        isCoreLibraryDesugaringEnabled = true
-        // 1. AKTIFKAN DESUGARING (Gunakan tanda '=' untuk Kotlin DSL)
         isCoreLibraryDesugaringEnabled = true
     }
 
@@ -28,8 +23,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.manajemen_keuangan"
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 24 // Tetap 24 agar Firebase & PDF lancar
+        targetSdk = 34
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
@@ -45,8 +40,10 @@ flutter {
     source = "../.."
 }
 
-// 2. TAMBAHKAN BLOK DEPENDENCIES DI PALING BAWAH
 dependencies {
-    // Mesin utama untuk menjalankan API waktu Java 8+ di HP lama
+    // Mesin utama untuk API waktu
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    
+    // HAPUS SEMUA JURUS LSTAR SEBELUMNYA. 
+    // Biarkan Flutter & Android mengatur dependensinya secara otomatis.
 }

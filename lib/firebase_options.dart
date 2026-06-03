@@ -41,12 +41,12 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDSdBxzMvN77jR4Q_ID1b51R2GpecwpKeU',
-    appId: '1:280443091258:web:acc73d39b76b6844c17803',
-    messagingSenderId: '280443091258',
-    projectId: 'keuangan-app-2026-74ea7',
-    authDomain: 'keuangan-app-2026-74ea7.firebaseapp.com',
-    storageBucket: 'keuangan-app-2026-74ea7.firebasestorage.app',
+    apiKey: 'AIzaSyDkxWXbfOSmXD1gRXStXgPdZwm_f5ivPY8',
+    appId: '1:149993825617:web:2e7add294afc4631f71f70',
+    messagingSenderId: '149993825617',
+    projectId: 'aplikasikeuangantugas',
+    authDomain: 'aplikasikeuangantugas.firebaseapp.com',
+    storageBucket: 'aplikasikeuangantugas.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -76,11 +76,11 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDSdBxzMvN77jR4Q_ID1b51R2GpecwpKeU',
-    appId: '1:280443091258:web:d97894fc94be4396c17803',
-    messagingSenderId: '280443091258',
-    projectId: 'keuangan-app-2026-74ea7',
-    authDomain: 'keuangan-app-2026-74ea7.firebaseapp.com',
-    storageBucket: 'keuangan-app-2026-74ea7.firebasestorage.app',
+    apiKey: 'AIzaSyDkxWXbfOSmXD1gRXStXgPdZwm_f5ivPY8',
+    appId: '1:149993825617:web:2e7add294afc4631f71f70',
+    messagingSenderId: '149993825617',
+    projectId: 'aplikasikeuangantugas',
+    authDomain: 'aplikasikeuangantugas.firebaseapp.com',
+    storageBucket: 'aplikasikeuangantugas.firebasestorage.app',
   );
 }

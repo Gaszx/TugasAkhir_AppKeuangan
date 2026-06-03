@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'firebase_options.dart';
 import 'services/notification_service.dart';
 import 'screens/splash_screen.dart';
@@ -14,11 +17,29 @@ import 'providers/theme_provider.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_layout.dart';
 
-void main() async {
-  // 1. Tahan UI sampai mesin (Firebase) siap
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  
+  // 1. Cek Platform Universal
+  if (kIsWeb) {
+    // Jalur WEB: Gunakan konfigurasi manual ini
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyBjbxT8TN9jty8rUAr3Wmyf3vGJQKPB1pI",
+        authDomain: "aplikasikeuangantugas.firebaseapp.com",
+        projectId: "aplikasikeuangantugas",
+        storageBucket: "aplikasikeuangantugas.firebasestorage.app",
+        messagingSenderId: "149993825617",
+        appId: "1:149993825617:web:2e7add294afc4631f71f70"
+      ),
+    );
+  } else {
+    // Jalur ANDROID/IOS: Otomatis membaca google-services.json
+    await Firebase.initializeApp();
+  }
+
   await NotificationService().init();
+  
   // 2. Buat Status Bar (Jam/Sinyal HP) menjadi transparan untuk efek imersif
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
@@ -30,8 +51,19 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  // 4. Nyalakan Firebase
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // 4. Eksekusi Login & Seeder (Instruksi User)
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance.signInAnonymously();
+    debugPrint("✅ LOGIN ANONIM BERHASIL: ${userCredential.user?.uid}");
+
+    // FirebaseFirestore firestore = FirebaseFirestore.instance;
+    // await firestore.collection('admins').doc('admin1').set({'pin': '111111'});
+    // await firestore.collection('admins').doc('admin2').set({'pin': '222222'});
+    // await firestore.collection('admins').doc('admin3').set({'pin': '333333'});
+    // debugPrint("✅ DATA PIN BERHASIL DISUNTIKKAN KE FIRESTORE!");
+  } catch (e) {
+    debugPrint("❌ ERROR FIREBASE: $e");
+  }
 
   runApp(const BidadariERPApp());
 }

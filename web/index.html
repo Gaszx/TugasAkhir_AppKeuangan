@@ -31,6 +31,22 @@
 
   <title>manajemen_keuangan</title>
   <link rel="manifest" href="manifest.json">
+  
+  <!-- Injeksi Firebase JS SDK manual untuk kompatibilitas versi lawas -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBjbxT8TN9jty8rUAr3Wmyf3vGJQKPB1pI",
+      authDomain: "aplikasikeuangantugas.firebaseapp.com",
+      projectId: "aplikasikeuangantugas",
+      storageBucket: "aplikasikeuangantugas.firebasestorage.app",
+      messagingSenderId: "149993825617",
+      appId: "1:149993825617:web:2e7add294afc4631f71f70"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <!--
