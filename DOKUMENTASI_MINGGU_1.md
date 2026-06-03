@@ -8,7 +8,7 @@
 
 ---
 
-## 1. Ruang Lingkup (Scope) Keseluruhan
+## 1. Ruang Lingkup (Scope) 
 
 Berdasarkan *source code* dan struktur direktori yang telah diaudit, aplikasi Bidadari ERP adalah sebuah perangkat lunak manajemen keuangan dan aset berskala *Enterprise* yang dirancang secara khusus untuk memantau beragam aliran bisnis. Berikut adalah penjabaran seluruh fitur komprehensif di dalamnya:
 
@@ -37,7 +37,7 @@ Berdasarkan *source code* dan struktur direktori yang telah diaudit, aplikasi Bi
 
 ---
 
-## 2. Pemilihan Tech Stack Keseluruhan
+## 2. Pemilihan Tech Stack 
 
 Arsitektur perangkat lunak dibangun menggunakan kombinasi teknologi modern agar aplikasi bersifat lintas platform (Android, iOS, Web) dan dapat diandalkan kinerjanya. Berdasarkan audit pada file `pubspec.yaml`, *tech stack* yang digunakan adalah:
 
@@ -66,59 +66,75 @@ Arsitektur perangkat lunak dibangun menggunakan kombinasi teknologi modern agar 
 
 ## 3. Desain Struktur Data & Alur Logika (Flowchart)
 
-Visualisasi di bawah ini menggambarkan alur dari ujung ke ujung (*End-to-End*) yang sangat akurat dengan logika asinkronus sistem.
+### A. Skema Database (Cloud Firestore NoSQL)
+Aplikasi ini menggunakan Cloud Firestore (NoSQL) tanpa *endpoint API REST* konvensional. Data disimpan dalam bentuk Koleksi (Collections) dan Dokumen (Documents). Berikut adalah rancangan skema 100% akurat berdasarkan entitas model (Dart) yang ada di dalam *source code*:
 
-```mermaid
-graph TD
-    %% 1. Inisiasi Aplikasi
-    A([Icon Aplikasi Ditekan]) --> B[Memuat SplashScreen & Inisialisasi Firebase]
-    B --> C{AuthWrapper / Observer <br/> Mengecek Lifecycle & Sesi}
-    
-    %% 2. Skenario Gagal Sesi / Locked
-    C -- "Sesi Kosong / App Ditinggalkan > 3 Menit" --> D[LoginScreen]
-    D --> E[/Input PIN 6 Digit/]
-    E --> F[Memanggil Provider: auth.login()]
-    F --> G[Firebase Auth: signInAnonymously]
-    G --> H{Cek ID PIN di <br/> Firestore: 'admins/admin_id'}
-    
-    H -- Tidak Ditemukan --> I[Tolak Akses & Tampilkan SnackBar Error]
-    I --> D
-    
-    %% 3. Skenario Masuk Sistem
-    H -- Cocok --> J[Simpan Sesi ke SharedPreferences]
-    J --> K
-    C -- "Sesi Aktif & Valid" --> K([MainLayout / Dashboard])
-    
-    %% 4. Eksekusi Dalam Aplikasi
-    K --> L{Navigasi Utama <br/> (BottomNavBar/Menu)}
-    
-    %% 4A. Modul Dashboard Utama
-    L -- Tab Dashboard --> M1[DashboardScreen]
-    M1 --> N1[Menarik Data Kumulatif dari FinanceProvider]
-    N1 --> O1[Menampilkan Chart & Ringkasan Saldo]
-    
-    %% 4B. Modul Arus Kas Biasa
-    L -- Tab Income/Expense --> M2[Income / Expense Form]
-    M2 --> N2[/User Input: Nominal, Tipe, Catatan/]
-    N2 --> O2{Operasi CRUD Database}
-    
-    %% 4C. Modul Manajemen Hutang & Cicilan
-    L -- Tab Debt --> M3[DebtReportScreen]
-    M3 --> N3[Memantau Tanggal Jatuh Tempo via NotificationService]
-    N3 --> O2
-    
-    %% 4D. Modul Manajemen Aset Sampingan
-    L -- Tab Unit Bisnis --> M4[Kontrakan / Galon / Kelapa Report]
-    M4 --> N4[/Ubah Status Pintu & Stok/]
-    N4 --> O2
-    
-    %% 5. Pusat Operasi Cloud
-    O2 -- CREATE/UPDATE/DELETE --> P[(Firebase Cloud Firestore)]
-    O2 -- READ Real-time --> P
-    
-    %% 6. Pembuatan Laporan Fisik
-    P --> Q{Request Cetak Laporan}
-    Q -- Ya --> R[Generate PDF via package:pdf]
-    R --> S[Tampilkan Preview & Download/Print]
-    Q -- Tidak --> K
-```
+**1. Koleksi `admins` (Autentikasi Keamanan)**
+Menyimpan akses masuk (PIN) untuk setiap pengguna/karyawan.
+- `pin` (String): Kode akses 6 digit rahasia (contoh: "111111").
+
+**2. Koleksi `incomes` (Model Pemasukan / `IncomeModel`)**
+Pencatatan pendapatan bersih dan detail operasional dari setiap unit bisnis.
+- `type` (String): Tipe pendapatan (`kelapa`, `galon`, `kontrakan`).
+- `amount` (Double): Nominal pendapatan bersih (*Net Income*).
+- `date` (String/ISO8601): Tanggal transaksi.
+- `submittedBy` (String): Penginput data (Role: Admin/Karyawan).
+- `description` (String): Catatan tambahan opsional.
+- *Field Opsional (Khusus Kelapa):* `location`, `grossAmount`, `capitalCost` (HPP), `employeeCut`, `rentCost`, `itemQuantity`.
+- *Field Opsional (Khusus Kontrakan):* `doorNumber` (Nomor pintu).
+
+**3. Koleksi `expenses` (Model Pengeluaran / `ExpenseModel`)**
+Pencatatan seluruh biaya dan modal keluar.
+- `type` (String): Kategori pengeluaran (`modal`, `sewa`, `operasional`, `gaji`, `lainnya`).
+- `unitBisnis` (String): Unit asal pengeluaran (`Kelapa`, `Galon`, `Kontrakan`, `Umum`).
+- `amount` (Double): Nominal uang keluar.
+- `date` (String/ISO8601): Tanggal transaksi.
+- `outlet` (String): Lokasi pengeluaran (misal: "Pusat").
+- `description` (String): Deskripsi wajib (Keamanan sistem agar audit jelas).
+
+**4. Koleksi `doors` (Model Pintu Kontrakan / `DoorModel`)**
+Manajemen spesifik untuk inventaris aset kamar/pintu kontrakan.
+- `roomNumber` (String): Nomor kamar/pintu.
+- `tenantName` (String): Nama penyewa.
+- `monthlyPrice` (Double): Harga sewa bulanan.
+- `dueDate` (Integer): Tanggal jatuh tempo per bulan (1 - 31).
+- `isEmpty` (Boolean): Status kamar (`true` = kosong, `false` = terisi).
+- `lastPaymentDate` (String/ISO8601 - Opsional): Kapan terakhir kali dibayar.
+
+**5. Koleksi `debts` (Model Hutang / `DebtModel`)**
+Manajemen tagihan dan cicilan eksternal.
+- `creditorName` (String): Nama bank/leasing/perorangan.
+- `amount` (Double): Nominal angsuran per bulan (atau total jika sekali bayar).
+- `dueDate` (String/ISO8601): Tanggal jatuh tempo terdekat.
+- `isInstallment` (Boolean): `true` jika cicilan bulanan, `false` jika sekali bayar lunas.
+- `currentInstallment` (Integer): Angsuran ke-berapa saat ini.
+- `totalInstallments` (Integer): Total tenor bulan.
+- `isPaid` (Boolean): Status LUNAS TOTAL.
+- `description` (String): Catatan tambahan.
+
+<br>
+
+**Visualisasi Skema Database (ERD / Collection Diagram):**
+
+Diagram di bawah ini memetakan 5 entitas utama (Koleksi) yang ada di dalam database Firestore. Meskipun bersistem NoSQL (tanpa relasi kaku/Foreign Key), kelima entitas ini secara logis saling menopang satu sama lain untuk membentuk ekosistem ERP yang utuh (mulai dari Pemasukan, Pengeluaran, Hutang, hingga Aset Kamar).
+
+![Skema Database](aset/schema.png)
+
+---
+
+### B. Alur Logika (Flowchart)
+
+Visualisasi di bawah ini menggambarkan alur dari ujung ke ujung (*End-to-End*) yang sangat akurat dengan arsitektur aplikasi. Flowchart ini memetakan perjalanan pengguna mulai dari proses verifikasi keamanan (PIN) di pintu masuk, penjagaan sesi oleh *AuthWrapper*, hingga pencabangan ke berbagai modul bisnis (Dashboard, Arus Kas, Kontrakan), yang seluruhnya bermuara pada sinkronisasi *real-time* ke Cloud Firestore.
+
+![Flowchart Alur Logika](aset/flowchart.png)
+
+
+
+
+---
+
+## 4. Desain Antarmuka (Mockup UI/UX)
+
+Berikut adalah visualisasi antarmuka aplikasi Bidadari ERP yang mengusung desain *Enterprise UI* dengan fokus pada kemudahan penggunaan (*user-friendly*) dan kebersihan tata letak (*clean layout*).
+
+*(Silakan tambahkan gambar UI Anda di bawah ini nanti, contoh formatnya: `![Dashboard](aset/nama_foto.png)`)*
