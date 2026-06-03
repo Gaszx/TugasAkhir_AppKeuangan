@@ -92,7 +92,7 @@ class BidadariERPApp extends StatelessWidget {
           );
 
           return MaterialApp(
-            title: 'Bidadari ERP',
+            title: 'AppKeuangan',
             debugShowCheckedModeBanner:
                 false, // Hilangkan pita 'DEBUG' merah di pojok
             themeMode: themeProvider.themeMode,

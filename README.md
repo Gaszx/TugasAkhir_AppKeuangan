@@ -1,17 +1,27 @@
-# manajemen_keuangan
+# AppKeuangan
 
-A new Flutter project.
+**Tugas Akhir Mata Kuliah Pemrograman Mobile**
 
-## Getting Started
+Aplikasi **AppKeuangan** adalah sebuah perangkat lunak manajemen keuangan dan pencatatan aset berskala *Enterprise* yang dirancang untuk memantau berbagai aliran bisnis secara *real-time*. Proyek ini dibangun menggunakan **Flutter** untuk antarmuka lintas platform, dan **Firebase** (Firestore & Authentication) untuk layanan basis data dan keamanan.
 
-This project is a starting point for a Flutter application.
+## Anggota Kelompok
+1. **Bagas Sujiwo** (2306018)
+2. **Romy Zaenul Alam** (2306019)
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Fitur Utama
+- **Keamanan Ganda:** Login tertutup berbasis PIN (6 digit) dengan sistem *Anonymous Auth* dan *Auto-Lock* jika aplikasi ditinggalkan (berada di latar belakang lebih dari durasi tertentu).
+- **Dashboard Terpusat:** Menampilkan *summary* ringkasan saldo, kas masuk, dan aset lainnya secara instan.
+- **Pencatatan Arus Kas:** Modul CRUD komprehensif untuk *Income* (Pemasukan) dan *Expense* (Pengeluaran).
+- **Manajemen Hutang (Debt):** Pelacakan rincian cicilan dan status jatuh tempo hutang ke kreditur.
+- **Multi-Unit Bisnis:** Memantau pendapatan spesifik dari bisnis sampingan (seperti Kontrakan, Air Galon, Kelapa).
+- **Ekspor Laporan (Cetak PDF):** Fitur generator laporan fisik berformat PDF yang bisa langsung diunduh atau dicetak.
+- **Enterprise UI:** Mengusung antarmuka profesional dengan dukungan fitur perpindahan tema otomatis (*Light Mode / Dark Mode*).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Dokumentasi Teknis
+Untuk membaca rincian struktur data dan melihat visualisasi logika sistem (Flowchart), silakan baca file pendukung:
+- `DOKUMENTASI_MINGGU_1.md` (Terletak di direktori utama).
+
+---
+*Proyek ini dikembangkan secara spesifik untuk memenuhi standar penugasan akademik dan siap untuk dikembangkan (*scalable*) ke tahapan produksi.*
