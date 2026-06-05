@@ -16,6 +16,12 @@ import 'providers/finance_provider.dart';
 import 'providers/theme_provider.dart';
 import 'screens/login_screen.dart';
 import 'screens/main_layout.dart';
+import 'screens/income_form_screen.dart';
+import 'screens/expense_form_screen.dart';
+import 'screens/debt_form_screen.dart';
+import 'screens/debt_report_screen.dart';
+import 'screens/kontrakan_report_screen.dart';
+import 'screens/notification_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -202,7 +208,17 @@ class BidadariERPApp extends StatelessWidget {
             ),
 
             // --- ROUTER AWAL ---
-            home: const SplashScreen(),
+            initialRoute: '/',
+            routes: {
+              '/': (context) => const AuthWrapper(),
+              '/login': (context) => const LoginScreen(),
+              '/dashboard': (context) => const MainLayout(),
+              '/income_form': (context) => const IncomeFormScreen(),
+              '/expense_form': (context) => const ExpenseFormScreen(),
+              '/debt_form': (context) => const DebtFormScreen(),
+              '/debt_report': (context) => const DebtReportScreen(),
+              '/notification': (context) => const NotificationScreen(),
+            },
           );
         },
       ),
