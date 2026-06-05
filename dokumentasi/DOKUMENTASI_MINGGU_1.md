@@ -142,26 +142,24 @@ Untuk mendemonstrasikan kelancaran dan arsitektur visual aplikasi ini, kami tela
 🌟 **LINK AKSES PROTOTIPE INTERAKTIF:**  
 [https://gaszx.github.io/TugasAkhir_AppKeuangan/prototype.html](https://gaszx.github.io/TugasAkhir_AppKeuangan/prototype.html)
 
-### Galeri Antarmuka (Mode Gelap / Dark Mode)
-
 <table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
-  <tr>
+  <tr style="page-break-inside: avoid;">
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_01_LoginScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_01_LoginScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">1. Login Screen (PIN)</b>
     </td>
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_02_DashboardScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_02_DashboardScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">2. Dashboard Utama</b>
     </td>
   </tr>
-  <tr>
+  <tr style="page-break-inside: avoid;">
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_03_KelapaReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_03_KelapaReportScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">3. Laporan Unit Kelapa</b>
     </td>
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_04_GalonReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_04_GalonReportScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">4. Laporan Unit Galon</b>
     </td>
   </tr>
@@ -170,23 +168,23 @@ Untuk mendemonstrasikan kelancaran dan arsitektur visual aplikasi ini, kami tela
 <div style="page-break-after: always;"></div>
 
 <table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
-  <tr>
+  <tr style="page-break-inside: avoid;">
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">5. Laporan Unit Kontrakan</b>
     </td>
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_06_IncomeFormScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_06_IncomeFormScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">6. Input Data Pemasukan</b>
     </td>
   </tr>
-  <tr>
+  <tr style="page-break-inside: avoid;">
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">7. Input Data Pengeluaran</b>
     </td>
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_08_DebtFormScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_08_DebtFormScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">8. Pencatatan Utang / Cicilan</b>
     </td>
   </tr>
@@ -195,13 +193,13 @@ Untuk mendemonstrasikan kelancaran dan arsitektur visual aplikasi ini, kami tela
 <div style="page-break-after: always;"></div>
 
 <table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
-  <tr>
+  <tr style="page-break-inside: avoid;">
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_09_DebtReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_09_DebtReportScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">9. Rekapitulasi Laporan Utang</b>
     </td>
     <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
-      <img src="../screenshot/Dark_10_NotificationScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <img src="../screenshot/Dark_10_NotificationScreen.png" width="190" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
       <b style="font-size: 14px;">10. Pusat Peringatan Notifikasi</b>
     </td>
   </tr>
