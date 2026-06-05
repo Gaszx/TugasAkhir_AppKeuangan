@@ -146,51 +146,63 @@ Untuk mendemonstrasikan kelancaran dan arsitektur visual aplikasi ini, kami tela
 
 <table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
   <tr>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_01_LoginScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">1. Login (PIN)</b>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_01_LoginScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">1. Login Screen (PIN)</b>
     </td>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_02_DashboardScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">2. Dashboard</b>
-    </td>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_03_KelapaReportScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">3. Lap. Kelapa</b>
-    </td>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_04_GalonReportScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">4. Lap. Galon</b>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_02_DashboardScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">2. Dashboard Utama</b>
     </td>
   </tr>
   <tr>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">5. Lap. Kontrakan</b>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_03_KelapaReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">3. Laporan Unit Kelapa</b>
     </td>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_06_IncomeFormScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">6. Pemasukan</b>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_04_GalonReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">4. Laporan Unit Galon</b>
     </td>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">7. Pengeluaran</b>
+  </tr>
+</table>
+
+<div style="page-break-after: always;"></div>
+
+<table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
+  <tr>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">5. Laporan Unit Kontrakan</b>
     </td>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_08_DebtFormScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">8. Input Utang</b>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_06_IncomeFormScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">6. Input Data Pemasukan</b>
     </td>
   </tr>
   <tr>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_09_DebtReportScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">9. Lap. Utang</b>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">7. Input Data Pengeluaran</b>
     </td>
-    <td width="25%" style="border: none; padding: 8px; vertical-align: top;">
-      <img src="../screenshot/Dark_10_NotificationScreen.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
-      <b style="font-size: 12px;">10. Notifikasi</b>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_08_DebtFormScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">8. Pencatatan Utang / Cicilan</b>
     </td>
-    <td width="25%" style="border: none; padding: 8px;"></td>
-    <td width="25%" style="border: none; padding: 8px;"></td>
+  </tr>
+</table>
+
+<div style="page-break-after: always;"></div>
+
+<table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
+  <tr>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_09_DebtReportScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">9. Rekapitulasi Laporan Utang</b>
+    </td>
+    <td width="50%" style="border: none; padding: 10px; vertical-align: top;">
+      <img src="../screenshot/Dark_10_NotificationScreen.png" width="220" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b style="font-size: 14px;">10. Pusat Peringatan Notifikasi</b>
+    </td>
   </tr>
 </table>
