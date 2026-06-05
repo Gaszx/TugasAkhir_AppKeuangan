@@ -140,63 +140,59 @@ Visualisasi di bawah ini menggambarkan alur dari ujung ke ujung (*End-to-End*) y
 Untuk mendemonstrasikan kelancaran dan arsitektur visual aplikasi ini, kami telah menyusun **Prototipe Interaktif (Live Mockup)** yang dapat diakses langsung melalui peramban (browser) di perangkat apa pun (HP, Laptop, PC) tanpa perlu instalasi tambahan.
 
 🌟 **LINK AKSES PROTOTIPE INTERAKTIF:**  
-👉 **[KLIK DI SINI UNTUK MEMBUKA PROTOTIPE BIDADARI ERP](https://Gaszx.github.io/TugasAkhir_AppKeuangan/prototype.html)**
-
-*(Instruksi: Silakan klik layar HP di dalam link tersebut untuk melihat transisi antar halaman layaknya aplikasi sungguhan!)*
+https://gaszx.github.io/TugasAkhir_AppKeuangan/prototype.html
 
 ### Galeri Antarmuka (Mode Gelap / Dark Mode)
-
-Berikut adalah visualisasi antarmuka aplikasi Bidadari ERP yang mengusung desain *Enterprise UI* dengan fokus pada kemudahan penggunaan (*user-friendly*) dan kebersihan tata letak (*clean layout*).
 
 <table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
   <tr>
     <td width="50%" style="border: none; padding: 10px;">
-      <b>1. Login Screen (PIN)</b><br><br>
-      <img src="../screenshot/Dark_01_LoginScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      <img src="../screenshot/Dark_01_LoginScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>1. Login Screen (PIN)</b>
     </td>
     <td width="50%" style="border: none; padding: 10px;">
-      <b>2. Dashboard Utama</b><br><br>
-      <img src="../screenshot/Dark_02_DashboardScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" style="border: none; padding: 10px;">
-      <b>3. Laporan Unit Kelapa</b><br><br>
-      <img src="../screenshot/Dark_03_KelapaReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-    </td>
-    <td width="50%" style="border: none; padding: 10px;">
-      <b>4. Laporan Unit Galon</b><br><br>
-      <img src="../screenshot/Dark_04_GalonReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      <img src="../screenshot/Dark_02_DashboardScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>2. Dashboard Utama</b>
     </td>
   </tr>
   <tr>
     <td width="50%" style="border: none; padding: 10px;">
-      <b>5. Laporan Unit Kontrakan</b><br><br>
-      <img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      <img src="../screenshot/Dark_03_KelapaReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>3. Laporan Unit Kelapa</b>
     </td>
     <td width="50%" style="border: none; padding: 10px;">
-      <b>6. Input Data Pemasukan</b><br><br>
-      <img src="../screenshot/Dark_06_IncomeFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" style="border: none; padding: 10px;">
-      <b>7. Input Data Pengeluaran</b><br><br>
-      <img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-    </td>
-    <td width="50%" style="border: none; padding: 10px;">
-      <b>8. Pencatatan Utang / Cicilan</b><br><br>
-      <img src="../screenshot/Dark_08_DebtFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      <img src="../screenshot/Dark_04_GalonReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>4. Laporan Unit Galon</b>
     </td>
   </tr>
   <tr>
     <td width="50%" style="border: none; padding: 10px;">
-      <b>9. Rekapitulasi Laporan Utang</b><br><br>
-      <img src="../screenshot/Dark_09_DebtReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      <img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>5. Laporan Unit Kontrakan</b>
     </td>
     <td width="50%" style="border: none; padding: 10px;">
-      <b>10. Pusat Peringatan Notifikasi</b><br><br>
-      <img src="../screenshot/Dark_10_NotificationScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+      <img src="../screenshot/Dark_06_IncomeFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>6. Input Data Pemasukan</b>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" style="border: none; padding: 10px;">
+      <img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>7. Input Data Pengeluaran</b>
+    </td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <img src="../screenshot/Dark_08_DebtFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>8. Pencatatan Utang / Cicilan</b>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" style="border: none; padding: 10px;">
+      <img src="../screenshot/Dark_09_DebtReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>9. Rekapitulasi Laporan Utang</b>
+    </td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <img src="../screenshot/Dark_10_NotificationScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);"><br><br>
+      <b>10. Pusat Peringatan Notifikasi</b>
     </td>
   </tr>
 </table>
