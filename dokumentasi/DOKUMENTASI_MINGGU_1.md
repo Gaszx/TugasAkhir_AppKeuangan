@@ -140,7 +140,7 @@ Visualisasi di bawah ini menggambarkan alur dari ujung ke ujung (*End-to-End*) y
 Untuk mendemonstrasikan kelancaran dan arsitektur visual aplikasi ini, kami telah menyusun **Prototipe Interaktif (Live Mockup)** yang dapat diakses langsung melalui peramban (browser) di perangkat apa pun (HP, Laptop, PC) tanpa perlu instalasi tambahan.
 
 🌟 **LINK AKSES PROTOTIPE INTERAKTIF:**  
-https://gaszx.github.io/TugasAkhir_AppKeuangan/prototype.html
+[https://gaszx.github.io/TugasAkhir_AppKeuangan/prototype.html](https://gaszx.github.io/TugasAkhir_AppKeuangan/prototype.html)
 
 ### Galeri Antarmuka (Mode Gelap / Dark Mode)
 
