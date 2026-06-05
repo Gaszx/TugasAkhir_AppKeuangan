@@ -1,9 +1,11 @@
 # TUGAS MINGGU 1: Perencanaan dan Desain (Fase Konseptual)
 
-**Nama Proyek:** Aplikasi Bidadari ERP (Manajemen Keuangan)  
+**Nama Proyek:** Aplikasi Manajemen Keuangan  
 **Anggota Kelompok:**
 - Bagas Sujiwo (2306018)
-- Romy Zaenul Alam (2306019)  
+- Romy Zaenul Alam (2306019) 
+- Firman Nur Hakim (2305107) 
+
 **Mata Kuliah:** Pemrograman Mobile  
 
 ---
@@ -118,7 +120,7 @@ Manajemen tagihan dan cicilan eksternal.
 
 Diagram di bawah ini memetakan 5 entitas utama (Koleksi) yang ada di dalam database Firestore. Meskipun bersistem NoSQL (tanpa relasi kaku/Foreign Key), kelima entitas ini secara logis saling menopang satu sama lain untuk membentuk ekosistem ERP yang utuh (mulai dari Pemasukan, Pengeluaran, Hutang, hingga Aset Kamar).
 
-![Skema Database](aset/schema.png)
+![Skema Database](../aset/schema.png)
 
 ---
 
@@ -126,7 +128,7 @@ Diagram di bawah ini memetakan 5 entitas utama (Koleksi) yang ada di dalam datab
 
 Visualisasi di bawah ini menggambarkan alur dari ujung ke ujung (*End-to-End*) yang sangat akurat dengan arsitektur aplikasi. Flowchart ini memetakan perjalanan pengguna mulai dari proses verifikasi keamanan (PIN) di pintu masuk, penjagaan sesi oleh *AuthWrapper*, hingga pencabangan ke berbagai modul bisnis (Dashboard, Arus Kas, Kontrakan), yang seluruhnya bermuara pada sinkronisasi *real-time* ke Cloud Firestore.
 
-![Flowchart Alur Logika](aset/flowchart.png)
+![Flowchart Alur Logika](../aset/flowchart.png)
 
 
 
@@ -146,25 +148,55 @@ Untuk mendemonstrasikan kelancaran dan arsitektur visual aplikasi ini, kami tela
 
 Berikut adalah visualisasi antarmuka aplikasi Bidadari ERP yang mengusung desain *Enterprise UI* dengan fokus pada kemudahan penggunaan (*user-friendly*) dan kebersihan tata letak (*clean layout*).
 
-<table>
+<table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
   <tr>
-    <td align="center"><b>1. Login Screen (PIN)</b><br><img src="../screenshot/Dark_01_LoginScreen.png" width="250"></td>
-    <td align="center"><b>2. Dashboard Utama</b><br><img src="../screenshot/Dark_02_DashboardScreen.png" width="250"></td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>1. Login Screen (PIN)</b><br><br>
+      <img src="../screenshot/Dark_01_LoginScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>2. Dashboard Utama</b><br><br>
+      <img src="../screenshot/Dark_02_DashboardScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
   </tr>
   <tr>
-    <td align="center"><b>3. Laporan Unit Kelapa</b><br><img src="../screenshot/Dark_03_KelapaReportScreen.png" width="250"></td>
-    <td align="center"><b>4. Laporan Unit Galon</b><br><img src="../screenshot/Dark_04_GalonReportScreen.png" width="250"></td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>3. Laporan Unit Kelapa</b><br><br>
+      <img src="../screenshot/Dark_03_KelapaReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>4. Laporan Unit Galon</b><br><br>
+      <img src="../screenshot/Dark_04_GalonReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
   </tr>
   <tr>
-    <td align="center"><b>5. Laporan Unit Kontrakan</b><br><img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="250"></td>
-    <td align="center"><b>6. Input Data Pemasukan</b><br><img src="../screenshot/Dark_06_IncomeFormScreen.png" width="250"></td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>5. Laporan Unit Kontrakan</b><br><br>
+      <img src="../screenshot/Dark_05_KontrakanReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>6. Input Data Pemasukan</b><br><br>
+      <img src="../screenshot/Dark_06_IncomeFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
   </tr>
   <tr>
-    <td align="center"><b>7. Input Data Pengeluaran</b><br><img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="250"></td>
-    <td align="center"><b>8. Pencatatan Utang / Cicilan</b><br><img src="../screenshot/Dark_08_DebtFormScreen.png" width="250"></td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>7. Input Data Pengeluaran</b><br><br>
+      <img src="../screenshot/Dark_07_ExpenseFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>8. Pencatatan Utang / Cicilan</b><br><br>
+      <img src="../screenshot/Dark_08_DebtFormScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
   </tr>
   <tr>
-    <td align="center"><b>9. Rekapitulasi Laporan Utang</b><br><img src="../screenshot/Dark_09_DebtReportScreen.png" width="250"></td>
-    <td align="center"><b>10. Pusat Peringatan Notifikasi</b><br><img src="../screenshot/Dark_10_NotificationScreen.png" width="250"></td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>9. Rekapitulasi Laporan Utang</b><br><br>
+      <img src="../screenshot/Dark_09_DebtReportScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
+    <td width="50%" style="border: none; padding: 10px;">
+      <b>10. Pusat Peringatan Notifikasi</b><br><br>
+      <img src="../screenshot/Dark_10_NotificationScreen.png" width="300" style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    </td>
   </tr>
 </table>
