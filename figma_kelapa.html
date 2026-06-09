@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figma Source - Laporan Kelapa</title>
+    <!-- Import font Inter agar langsung dikenali Figma -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #E2E8F0; /* Latar belakang editor */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Ini adalah FRAME UTAMA yang akan ditarik Figma */
+        .figma-frame {
+            width: 390px; /* Ukuran iPhone standar */
+            min-height: 1200px; /* Sengaja dibuat panjang agar ada area scroll/transaksi */
+            background-color: #F8FAFC; /* Warna dasar aplikasi kita */
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 24px 20px 16px 20px;
+            background-color: #F8FAFC;
+        }
+        .icon-back {
+            width: 24px; height: 24px;
+            color: #1E293B;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1E293B;
+            margin-right: 24px; /* Balance back button */
+        }
+
+        /* FILTER TABS */
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            margin-bottom: 24px;
+            gap: 12px;
+        }
+        .dropdown {
+            border: 1px solid #CBD5E1;
+            border-radius: 12px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1E293B;
+            background: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-group {
+            display: flex;
+            background: white;
+            border: 1px solid #CBD5E1;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .tab {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748B;
+            border-right: 1px solid #CBD5E1;
+        }
+        .tab:last-child { border-right: none; }
+        .tab.active {
+            background-color: #F59E0B;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* SUMMARY CARD */
+        .summary-card {
+            margin: 0 20px 24px 20px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            border-radius: 20px;
+            padding: 24px;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .sum-label { font-size: 12px; font-weight: 600; opacity: 0.9; letter-spacing: 0.5px; }
+        .sum-amount { font-size: 32px; font-weight: 700; }
+        .sum-row { display: flex; justify-content: space-between; margin-top: 8px; }
+        .sum-item { display: flex; flex-direction: column; gap: 4px; }
+        .item-val { font-size: 16px; font-weight: 600; }
+
+        /* CHART PLACEHOLDER */
+        .chart-card {
+            margin: 0 20px 24px 20px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #E2E8F0;
+            padding: 20px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .chart-title { font-size: 16px; font-weight: 700; color: #1E293B; }
+        .chart-days { display: flex; justify-content: space-between; font-size: 12px; color: #64748B; font-weight: 500;}
+        .chart-days span.active { color: #10B981; }
+
+        /* ACTION BUTTONS */
+        .action-row {
+            display: flex;
+            padding: 0 20px;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .btn {
+            flex: 1;
+            padding: 14px 0;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-blue { background-color: #3B82F6; box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+        .btn-red { background-color: #EF4444; box-shadow: 0 4px 12px rgba(239,68,68,0.3); }
+
+        /* SEWA LAPAK CARD */
+        .sewa-card {
+            margin: 0 20px 32px 20px;
+            background-color: #FEF2F2;
+            border: 1px solid #FECACA;
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sewa-info { display: flex; flex-direction: column; gap: 4px; }
+        .sewa-title { font-size: 12px; font-weight: 700; color: #1E293B; }
+        .sewa-amount { font-size: 16px; font-weight: 700; color: #EF4444; }
+
+        /* TRANSAKSI SECTION (THE MISSING PART) */
+        .trx-section {
+            background: white;
+            border-radius: 30px 30px 0 0;
+            padding: 24px 20px;
+            flex: 1;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .trx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .trx-title { font-size: 16px; font-weight: 700; color: #1E293B; }
+        .trx-filter { width: 32px; height: 32px; background: #F1F5F9; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; }
+
+        .trx-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .trx-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .trx-item:last-child { border-bottom: none; }
+        .trx-left { display: flex; gap: 12px; align-items: center; }
+        .trx-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 20px; }
+        .icon-in { background: #ECFDF5; color: #10B981; }
+        .icon-out { background: #FEF2F2; color: #EF4444; }
+        .trx-detail { display: flex; flex-direction: column; gap: 4px; }
+        .trx-name { font-size: 14px; font-weight: 700; color: #1E293B; }
+        .trx-time { font-size: 12px; font-weight: 500; color: #94A3B8; }
+        .trx-amount { font-size: 14px; font-weight: 700; }
+        .amount-in { color: #10B981; }
+        .amount-out { color: #1E293B; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Target Frame for html.to.design -->
+    <div class="figma-frame">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <div class="icon-back">←</div>
+            <div class="header-title">Laporan Kelapa</div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filter-section">
+            <div class="dropdown">Semua Outlet ▼</div>
+            <div class="tab-group">
+                <div class="tab active">Hari</div>
+                <div class="tab">Mgg</div>
+                <div class="tab">Bln</div>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary-card">
+            <div class="sum-item">
+                <div class="sum-label">LABA BERSIH (NETTO)</div>
+                <div class="sum-amount">Rp 4.250.000</div>
+            </div>
+            <div class="sum-row">
+                <div class="sum-item">
+                    <div class="sum-label" style="font-size:10px;">Omset Kotor</div>
+                    <div class="item-val">Rp 6.500.000</div>
+                </div>
+                <div class="sum-item">
+                    <div class="sum-label" style="font-size:10px;">Gaji Pegawai</div>
+                    <div class="item-val">Rp 1.500.000</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHART -->
+        <div class="chart-card">
+            <div class="chart-title">Trend Penjualan Kotor</div>
+            <div style="flex:1; border-bottom: 1px dashed #E2E8F0; margin: 16px 0;"></div>
+            <div class="chart-days">
+                <span class="active">Sn</span>
+                <span>Sl</span>
+                <span>Rb</span>
+                <span>Km</span>
+                <span>Jm</span>
+                <span>Sb</span>
+                <span>Mg</span>
+            </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="action-row">
+            <div class="btn btn-blue">📦 Beli Stok</div>
+            <div class="btn btn-red">🔑 Bayar Sewa</div>
+        </div>
+
+        <!-- SEWA CARD -->
+        <div class="sewa-card">
+            <div class="sewa-info">
+                <div class="sewa-title">Biaya Sewa Lapak (Hari Ini)</div>
+                <div class="sewa-amount">Rp 50.000</div>
+            </div>
+            <div style="font-size: 20px; color: #EF4444;">📅</div>
+        </div>
+
+        <!-- RIWAYAT TRANSAKSI -->
+        <div class="trx-section">
+            <div class="trx-header">
+                <div class="trx-title">Riwayat Transaksi Terbaru</div>
+                <div class="trx-filter">⚙️</div>
+            </div>
+
+            <div class="trx-list">
+                <!-- Item 1 -->
+                <div class="trx-item">
+                    <div class="trx-left">
+                        <div class="trx-icon icon-in">💰</div>
+                        <div class="trx-detail">
+                            <div class="trx-name">Penjualan Kelapa Muda (50 Butir)</div>
+                            <div class="trx-time">Hari ini, 14:30 • Outlet Induk</div>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-in">+ Rp 500.000</div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="trx-item">
+                    <div class="trx-left">
+                        <div class="trx-icon icon-out">📦</div>
+                        <div class="trx-detail">
+                            <div class="trx-name">Beli Kelapa Grosir (100 Butir)</div>
+                            <div class="trx-time">Hari ini, 08:00 • Supplier A</div>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-out">- Rp 700.000</div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="trx-item">
+                    <div class="trx-left">
+                        <div class="trx-icon icon-out">👨‍🔧</div>
+                        <div class="trx-detail">
+                            <div class="trx-name">Gaji Mingguan Ujang</div>
+                            <div class="trx-time">Kemarin, 17:00 • Gaji</div>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-out">- Rp 350.000</div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="trx-item">
+                    <div class="trx-left">
+                        <div class="trx-icon icon-in">💰</div>
+                        <div class="trx-detail">
+                            <div class="trx-name">Penjualan Es Kelapa (30 Gelas)</div>
+                            <div class="trx-time">Kemarin, 15:20 • Outlet Cabang 1</div>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-in">+ Rp 150.000</div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="trx-item">
+                    <div class="trx-left">
+                        <div class="trx-icon icon-out">🔑</div>
+                        <div class="trx-detail">
+                            <div class="trx-name">Bayar Sewa Harian Lapak</div>
+                            <div class="trx-time">Kemarin, 07:00 • Sewa</div>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-out">- Rp 50.000</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
