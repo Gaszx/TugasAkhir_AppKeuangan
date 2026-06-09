@@ -13,6 +13,15 @@
 ## 1. Manajemen State (State Management)
 Untuk mengatur aliran pergerakan data uang yang kompleks antar-halaman, kami menggunakan pustaka **Provider** (`ChangeNotifier`). Pendekatan ini membuat pembaruan antarmuka (grafik, saldo, tabel) berjalan sangat cepat tanpa membebani performa *smartphone*.
 
+**Arsitektur Aliran Data (Data Flow):**
+```mermaid
+graph LR
+  UI[Antarmuka Layar<br>UI Flutter] -->|Input Data| P(Finance Provider<br>State Manager)
+  P -->|Kirim Request| DB[(Firebase<br>Firestore)]
+  DB -.->|Real-time Sync| P
+  P -.->|Update Layar| UI
+```
+
 **Cuplikan `finance_provider.dart`:**
 ```dart
 class FinanceProvider extends ChangeNotifier {
@@ -33,6 +42,13 @@ Aplikasi kami telah mengudara secara *online*. Kami menggunakan **Firebase Cloud
   <img src="../aset/screenshot/firebase_console.png" width="500" style="border-radius: 8px; margin: 15px 0 5px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
   <br><i style="font-size: 13px;">Gambar: Bukti mutlak data transaksi berhasil mengalir dan tersimpan di Firebase Cloud.</i>
 </div>
+
+**Struktur Skema Database (NoSQL):**
+Aplikasi menggunakan skema *NoSQL Document-Based* dengan dua koleksi (*collections*) utama:
+| Nama Koleksi | Tipe Dokumen | Deskripsi |
+| :--- | :--- | :--- |
+| `transactions` | Auto-ID | Menyimpan semua rekapitulasi masuk/keluar uang (kelapa, galon, dll). |
+| `doors` | Manual ID | Menyimpan status penyewa untuk 8 pintu kontrakan. |
 
 **Inisialisasi Firebase di `main.dart`:**
 ```dart
