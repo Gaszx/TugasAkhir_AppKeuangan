@@ -19,9 +19,9 @@ Sebelum merilis aplikasi ke tahap produksi, kami merancang simulasi *End-to-End 
 </div>
 
 ## 2. Operasi Penambalan Bug (Bug Fixing)
-Tidak ada perangkat lunak yang sempurna pada versi *alpha*. Selama masa pra-rilis, tim kami mendeteksi keluhan (*bugs*) dan secara kolaboratif mendistribusikan perbaikan. Operasi penambalan (*patching*) utama yang kami eksekusi berkisar pada *memory leaks* dan tumpang tindih margin layar.
+Tidak ada perangkat lunak yang sempurna pada versi *alpha*. Selama masa pra-rilis, tim kami mendeteksi beberapa isu teknis dan secara aktif melakukan operasi penambalan (*patching*) melalui Git. Operasi utama yang kami eksekusi berkisar pada tata letak *PDF Export*, sinkronisasi aset *screenshot*, dan pembersihan file pelacak sampah (*node_modules*).
 
-Berikut adalah rekam jejak (*Commit History*) kontribusi nyata tim dalam mengatasi celah sistem:
+Berikut adalah rekam jejak (*Commit History*) asli dari repositori kami dalam mengatasi isu tersebut:
 
 <div align="center">
   <img src="../aset/screenshot/git_commits.png" width="550" style="border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
@@ -45,8 +45,11 @@ Di dalam halaman tersebut, pembaca (dosen penguji) dapat langsung membaca fitur 
   <a href="../build/app/outputs/flutter-apk/app-release.apk">
     <img src="../aset/screenshot/apk_download_banner.png" width="600" style="border-radius: 12px; margin: 15px 0 5px 0; box-shadow: 0 6px 15px rgba(0,0,0,0.4); cursor: pointer;">
   </a>
-  <br><i style="font-size: 13px;">(Banner Interaktif: Klik gambar di atas untuk langsung mengunduh Aplikasi Bidadari ERP)</i>
+  <br><i style="font-size: 13px;">(Klik banner di atas, atau klik tautan alternatif di bawah ini)</i>
 </div>
+
+**🔗 Tautan Unduhan Alternatif:**
+[Unduh Bidadari ERP (app-release.apk)](../build/app/outputs/flutter-apk/app-release.apk)
 <br>
 <div align="center">
   <img src="../aset/screenshot/readme_preview.png" width="600" style="border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">

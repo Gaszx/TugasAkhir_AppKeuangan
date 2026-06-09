@@ -1,0 +1,69 @@
+const puppeteer = require('puppeteer');
+const fs = require('fs');
+
+const bugHtml = `
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background: white; margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;}
+  .commit-list { width: 650px; border: 1px solid #d0d7de; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 20px;}
+  .title { font-size: 16px; font-weight: bold; margin-bottom: 15px; display: flex; align-items: center;}
+  .title svg { fill: #57606a; width: 20px; height: 20px; margin-right: 8px;}
+  .commit { display: flex; align-items: flex-start; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f0f3f6;}
+  .commit:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #2da44e; margin-top: 5px; margin-right: 12px;}
+  .msg { font-size: 14px; color: #24292f; font-weight: 500; margin-bottom: 4px; font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;}
+  .meta { font-size: 12px; color: #57606a;}
+  .hash { color: #0969da; font-family: monospace;}
+</style>
+</head>
+<body>
+  <div class="commit-list" id="capture">
+    <div class="title">
+      <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"></path></svg>
+      Jejak Perbaikan Bug (Real Git Commits)
+    </div>
+    
+    <div class="commit">
+      <div class="dot"></div>
+      <div>
+        <div class="msg">docs: fix PDF layout spacing by removing avoid page break...</div>
+        <div class="meta">Gaszxx committed <span class="hash">0ac9584</span></div>
+      </div>
+    </div>
+    
+    <div class="commit">
+      <div class="dot"></div>
+      <div>
+        <div class="msg">chore: remove node_modules from git tracking and update...</div>
+        <div class="meta">Gaszxx committed <span class="hash">c403f89</span></div>
+      </div>
+    </div>
+    
+    <div class="commit">
+      <div class="dot"></div>
+      <div>
+        <div class="msg">chore: sync moved screenshot folder to aset and finalize route...</div>
+        <div class="meta">Gaszxx committed <span class="hash">29bf970</span></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+`;
+
+fs.writeFileSync('mock_bug_real.html', bugHtml);
+
+(async () => {
+  const browser = await puppeteer.launch({ headless: "new", args: ['--no-sandbox'] });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 900, height: 700, deviceScaleFactor: 2 });
+  
+  await page.goto(`file://${__dirname}/mock_bug_real.html`);
+  const bugElem = await page.$('#capture');
+  await bugElem.screenshot({ path: 'aset/screenshot/git_commits.png' });
+  
+  await browser.close();
+  console.log('[+] Real Commits Asset captured');
+})();
