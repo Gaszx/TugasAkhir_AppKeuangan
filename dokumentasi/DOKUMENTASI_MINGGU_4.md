@@ -35,9 +35,28 @@ Pengerjaan tingkat kode sumber (*source code*) telah resmi diselesaikan. Aplikas
 flutter build apk --release
 ```
 
+<div align="center">
+  <img src="../aset/screenshot/terminal_build.png" width="550" style="border-radius: 8px; margin: 10px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+  <br><i style="font-size: 13px;">Gambar: Cuplikan proses kompilasi mesin Flutter yang berhasil mengeksekusi Build 54.8 MB.</i>
+</div>
+
 <div align="center" style="background-color: #f0f4f8; padding: 15px; border-radius: 8px; border: 1px solid #d1e1f0; margin: 20px 0;">
   <b>📦 Tautan Instaler Aplikasi (Android):</b><br><br>
   <code>Aplikasi-keuangan/build/app/outputs/flutter-apk/app-release.apk</code>
+</div>
+
+## 4. Penyusunan Dokumentasi Utama (README.md)
+Sebagai sentuhan akhir dari proyek berstandar industri, kami telah menyusun ulang file **`README.md`** di halaman depan repositori. Halaman ini berfungsi sebagai *Landing Page* (halaman sambutan) bagi dosen penguji atau publik yang mengunjungi Github kami.
+
+Di dalam README tersebut, kami telah merangkum:
+- Fitur-fitur unggulan Bidadari ERP.
+- **Link Download Cepat** untuk file APK.
+- Panduan Instalasi APK ke dalam HP Android.
+- Panduan *Build Source Code* bagi pengembang lain.
+
+<div align="center">
+  <img src="../aset/screenshot/readme_preview.png" width="550" style="border-radius: 8px; margin: 15px 0 5px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+  <br><i style="font-size: 13px;">Gambar: Pratinjau (Preview) Halaman README Repositori yang profesional.</i>
 </div>
 
 <div align="center">
