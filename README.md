@@ -11,7 +11,7 @@
 ## 📥 Unduh & Instal Aplikasi (APK)
 Anda tidak perlu melakukan *compile* kode dari awal. Aplikasi versi final yang sudah lulus uji (*Production Ready*) telah tersedia dan siap dipasang di perangkat Android Anda.
 
-**[👉 KLIK DI SINI UNTUK MENGUNDUH APLIKASI (v1.0.0 APK)](release/Bidadari-ERP-v1.0.apk)**
+**[👉 KLIK DI SINI UNTUK MENGUNDUH APLIKASI (v1.0.0 APK)](https://github.com/Gaszx/TugasAkhir_AppKeuangan/raw/main/release/Bidadari-ERP-v1.0.apk)**
 
 ### 📖 Cara Instalasi Cepat:
 1. Klik tautan unduhan di atas untuk mengunduh file `.apk` ke *smartphone* Android Anda.

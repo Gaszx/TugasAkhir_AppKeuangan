@@ -42,14 +42,14 @@ Sebagai etalase presentasi utama, kami telah mendesain ulang halaman **`README.m
 Di dalam halaman tersebut, pembaca (dosen penguji) dapat langsung membaca fitur aplikasi, melihat struktur kode, hingga **mengunduh langsung file APK**.
 
 <div align="center">
-  <a href="../release/Bidadari-ERP-v1.0.apk">
+  <a href="https://github.com/Gaszx/TugasAkhir_AppKeuangan/raw/main/release/Bidadari-ERP-v1.0.apk">
     <img src="../aset/screenshot/apk_download_banner.png" width="600" style="border-radius: 12px; margin: 15px 0 5px 0; box-shadow: 0 6px 15px rgba(0,0,0,0.4); cursor: pointer;">
   </a>
   <br><i style="font-size: 13px;">(Klik banner di atas, atau klik tautan alternatif di bawah ini)</i>
 </div>
 
 **🔗 Tautan Unduhan Alternatif:**
-[Unduh Bidadari ERP (v1.0.0 APK)](../release/Bidadari-ERP-v1.0.apk)
+[Unduh Bidadari ERP (v1.0.0 APK)](https://github.com/Gaszx/TugasAkhir_AppKeuangan/raw/main/release/Bidadari-ERP-v1.0.apk)
 <br>
 <div align="center">
   <img src="../aset/screenshot/readme_preview.png" width="600" style="border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
