@@ -66,23 +66,21 @@ Future<void> addTransaction(Transaction transaction) async {
 </div>
 
 ## 4. Penanganan Error Dasar (Error Handling)
-Untuk memastikan *User Experience* (UX) tidak terganggu saat terjadi kegagalan sistem (seperti input kosong atau internet putus), kami menerapkan perlindungan validasi ketat disertai notifikasi *pop-up* bawah (*Snackbar*).
+Untuk memberikan timbal balik (*feedback*) yang jelas kepada pengguna tanpa harus memaksa mereka berpindah halaman, kami mengimplementasikan sistem *pop-up* notifikasi melayang (**Snackbar**). 
 
-**Sistem Peringatan UX:**
-```dart
-// Memunculkan peringatan merah jika nominal salah/kosong
-ScaffoldMessenger.of(context).showSnackBar(
-  const SnackBar(
-    content: Text('Error: Harap isi semua form dengan benar!'),
-    backgroundColor: Colors.redAccent,
-    behavior: SnackBarBehavior.floating,
-  ),
-);
-```
+Sistem ini dirancang untuk memunculkan dua status utama:
+- **Peringatan Error (Merah):** Otomatis muncul jika pengguna menekan tombol simpan namun form belum lengkap atau terjadi gagal jaringan.
+- **Konfirmasi Sukses (Hijau/Teal):** Muncul sesaat setelah data transaksi divalidasi dan berhasil terunggah ke *database* Firebase.
 
+**Bukti Tampilan *Pop-Up* (Snackbar):**
 <div align="center">
-  <img src="../aset/screenshot/Dark_10_NotificationScreen.png" width="200" style="border-radius: 12px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-  <br><i style="font-size: 13px;">Gambar: Pusat log aktivitas dan peringatan keamanan sistem.</i>
+  <img src="../aset/screenshot/snackbar_success.png" width="350" style="border-radius: 10px; margin: 15px 0 5px 0; box-shadow: 0 6px 12px rgba(0,0,0,0.2);">
+  <br><i style="font-size: 13px;">Gambar: Pop-up keberhasilan menyimpan data.</i>
+  
+  <br><br>
+
+  <img src="../aset/screenshot/snackbar_error.png" width="350" style="border-radius: 10px; margin: 10px 0 5px 0; box-shadow: 0 6px 12px rgba(0,0,0,0.2);">
+  <br><i style="font-size: 13px;">Gambar: Pop-up peringatan kegagalan atau validasi form.</i>
 </div>
 
 ---
