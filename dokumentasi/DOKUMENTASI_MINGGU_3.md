@@ -14,13 +14,9 @@
 Untuk mengatur aliran pergerakan data uang yang kompleks antar-halaman, kami menggunakan pustaka **Provider** (`ChangeNotifier`). Pendekatan ini membuat pembaruan antarmuka (grafik, saldo, tabel) berjalan sangat cepat tanpa membebani performa *smartphone*.
 
 **Arsitektur Aliran Data (Data Flow):**
-```mermaid
-graph LR
-  UI[Antarmuka Layar<br>UI Flutter] -->|Input Data| P(Finance Provider<br>State Manager)
-  P -->|Kirim Request| DB[(Firebase<br>Firestore)]
-  DB -.->|Real-time Sync| P
-  P -.->|Update Layar| UI
-```
+<div align="center">
+  <img src="../aset/screenshot/data_flow.png" width="650" style="margin: 10px 0; border-radius: 8px;">
+</div>
 
 **Cuplikan `finance_provider.dart`:**
 ```dart
