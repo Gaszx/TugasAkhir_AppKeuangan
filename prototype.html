@@ -10,19 +10,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
             font-family: sans-serif;
             color: white;
-            flex-direction: column;
+            flex-direction: row;
+            gap: 40px;
+            overflow-y: auto;
         }
-        .header { margin-bottom: 20px; text-align: center; }
-        .header h1 { margin: 0; font-size: 24px; color: #2DD4BF; }
-        .header p { margin: 5px 0 0; font-size: 14px; color: #94A3B8; }
         
         .device-frame {
             width: 390px;
             height: 844px;
+            flex-shrink: 0;
             background: #000;
             border-radius: 45px;
             border: 12px solid #1E293B;
@@ -80,7 +82,7 @@
             background: rgba(0,0,0,0.5); pointer-events: auto;
         }
 
-        .controls { margin-top: 20px; display: flex; gap: 15px; }
+        .controls { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; }
         button.btn-flow {
             padding: 10px 20px; border-radius: 8px; border: none; background: #0D9488; color: white; cursor: pointer; font-weight: bold;
         }
@@ -89,10 +91,7 @@
 </head>
 <body>
 
-    <div class="header">
-        <h1>Interactive Prototype</h1>
-        <p>Bidadari ERP (Penyempurnaan Total)</p>
-    </div>
+
 
     <!-- BINGKAI HP -->
     <div class="device-frame">
