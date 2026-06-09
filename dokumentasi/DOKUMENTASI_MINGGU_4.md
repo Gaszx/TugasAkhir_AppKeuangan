@@ -10,63 +10,50 @@
 
 ---
 
-## 1. Pengujian Aplikasi (Quality Assurance)
-Sebelum merilis aplikasi ke tahap produksi (*Production*), kami menjalankan pengujian menyeluruh pada seluruh alur (*End-to-End Testing*). Hal ini untuk memastikan aplikasi terbebas dari kecacatan sistem (*Bug-Free*).
-
-**Laporan Hasil Pengujian (Test Case):**
-| Skenario Pengujian (Test) | Status | Keterangan Uji |
-| :--- | :---: | :--- |
-| **Autentikasi Akses PIN** | ✅ Lulus | PIN divalidasi dengan aman, tidak dapat dibypass oleh tamu. |
-| **Logika Kalkulasi ERP** | ✅ Lulus | Algoritma pemotongan gaji 15% (Kelapa) dan 50% (Galon) akurat. |
-| **Stres Jaringan (Firebase)** | ✅ Lulus | Data sukses tersinkronisasi ke *Cloud* di bawah 1 detik. |
-| **Responsivitas Antarmuka** | ✅ Lulus | Tidak ditemukan *Pixel Overflow* (layar bocor) pada perangkat kecil. |
-
-## 2. Perbaikan Bug & Optimasi Akhir (Bug Fixing)
-Berdasarkan temuan pengawasan selama fase pra-rilis, kami telah melakukan beberapa operasi penambalan (*Patching*) dan penyempurnaan:
-1. **Penyempurnaan Visual (*Layouting*):** Menyeimbangkan margin/padding layar dan memastikan format rupiah (Rp) menggunakan separator titik yang tepat (*id_ID*).
-2. **Optimalisasi Memori (State):** Membersihkan *memory leaks* pada pengontrol teks (*TextEditingController*) dengan mengaktifkan fungsi `dispose()` di setiap halaman.
-3. **Penyempurnaan Notifikasi (UX):** Mendesain ulang peringatan sistem (*Error Snackbar*) agar melayang rapi dan tidak mengganggu navigasi tombol pengguna.
-
-## 3. Kompilasi Sistem (Build & Deployment)
-Pengerjaan tingkat kode sumber (*source code*) telah resmi diselesaikan. Aplikasi **Bidadari ERP** berhasil dirakit (*Compiled*) ke dalam bentuk berkas instaler Android asli (APK) tanpa adanya fatal *error*.
-
-**Perintah Kompilasi Sistem:**
-```bash
-flutter build apk --release
-```
+## 1. Pengujian Sistem (Quality Assurance)
+Sebelum merilis aplikasi ke tahap produksi, kami merancang simulasi *End-to-End Testing* menggunakan alat bantu (*test engine*) otomatis. Pengujian ini difokuskan pada keamanan autentikasi PIN, akurasi perhitungan gaji, ketahanan jaringan sinkronisasi Firebase, dan uji kebocoran tata letak UI di berbagai ukuran layar.
 
 <div align="center">
-  <img src="../aset/screenshot/terminal_build.png" width="550" style="border-radius: 8px; margin: 10px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-  <br><i style="font-size: 13px;">Gambar: Cuplikan proses kompilasi mesin Flutter yang berhasil mengeksekusi Build 54.8 MB.</i>
+  <img src="../aset/screenshot/qa_test_report.png" width="550" style="border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+  <br><i style="font-size: 13px;">Gambar: Output terminal pengujian yang membuktikan bahwa kelima skenario vital aplikasi dinyatakan LULUS (Passed).</i>
 </div>
 
-<div align="center" style="background-color: #f0f4f8; padding: 15px; border-radius: 8px; border: 1px solid #d1e1f0; margin: 20px 0;">
-  <b>📦 Tautan Instaler Aplikasi (Android):</b><br><br>
-  <code>Aplikasi-keuangan/build/app/outputs/flutter-apk/app-release.apk</code>
-</div>
+## 2. Operasi Penambalan Bug (Bug Fixing)
+Tidak ada perangkat lunak yang sempurna pada versi *alpha*. Selama masa pra-rilis, tim kami mendeteksi keluhan (*bugs*) dan secara kolaboratif mendistribusikan perbaikan. Operasi penambalan (*patching*) utama yang kami eksekusi berkisar pada *memory leaks* dan tumpang tindih margin layar.
 
-## 4. Penyusunan Dokumentasi Utama (README.md)
-Sebagai sentuhan akhir dari proyek berstandar industri, kami telah menyusun ulang file **`README.md`** di halaman depan repositori. Halaman ini berfungsi sebagai *Landing Page* (halaman sambutan) bagi dosen penguji atau publik yang mengunjungi Github kami.
-
-Di dalam README tersebut, kami telah merangkum:
-- Fitur-fitur unggulan Bidadari ERP.
-- **Link Download Cepat** untuk file APK.
-- Panduan Instalasi APK ke dalam HP Android.
-- Panduan *Build Source Code* bagi pengembang lain.
+Berikut adalah rekam jejak (*Commit History*) kontribusi nyata tim dalam mengatasi celah sistem:
 
 <div align="center">
-  <img src="../aset/screenshot/readme_preview.png" width="550" style="border-radius: 8px; margin: 15px 0 5px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-  <br><i style="font-size: 13px;">Gambar: Pratinjau (Preview) Halaman README Repositori yang profesional.</i>
+  <img src="../aset/screenshot/git_commits.png" width="550" style="border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+  <br><i style="font-size: 13px;">Gambar: Rekam log aktivitas kolaborasi tim (Bagas, Romy, Firman) dalam menambal sistem.</i>
 </div>
 
+## 3. Kompilasi & Rilis Instaler (Build & Deployment)
+Pengerjaan kode sumber telah dikunci. Berdasarkan hasil pengujian yang berstatus mulus, mesin kompiler *Flutter* berhasil mengekstraksi seluruh aset, paket *dependencies*, dan logika kode ke dalam format instaler Android `.apk` murni dengan ukuran akhir **54.8 MB**.
+
 <div align="center">
-  <img src="../aset/screenshot/Dark_02_DashboardScreen.png" width="300" style="border-radius: 12px; margin: 15px 0 5px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-  <br><i style="font-size: 13px;">Gambar: Tampilan utama Bidadari ERP yang telah sukses dikompilasi dan siap didistribusikan.</i>
+  <img src="../aset/screenshot/terminal_build.png" width="550" style="border-radius: 8px; margin: 15px 0 5px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+  <br><i style="font-size: 13px;">Gambar: Cuplikan detik-detik keberhasilan mesin mengkompilasi file rilis aplikasi (Tanpa Error).</i>
+</div>
+
+## 4. Tautan Unduhan & Dokumentasi Utama (README)
+Sebagai etalase presentasi utama, kami telah mendesain ulang halaman **`README.md`** di repositori Github kami. Repositori ini kini tidak hanya sekadar menyimpan tumpukan kode, melainkan berfungsi sebagai *Landing Page* produk profesional.
+
+Di dalam halaman tersebut, pembaca (dosen penguji) dapat langsung membaca fitur aplikasi, melihat struktur kode, hingga **mengunduh langsung file APK**.
+
+<div align="center">
+  <a href="../build/app/outputs/flutter-apk/app-release.apk">
+    <img src="../aset/screenshot/apk_download_banner.png" width="600" style="border-radius: 12px; margin: 15px 0 5px 0; box-shadow: 0 6px 15px rgba(0,0,0,0.4); cursor: pointer;">
+  </a>
+  <br><i style="font-size: 13px;">(Banner Interaktif: Klik gambar di atas untuk langsung mengunduh Aplikasi Bidadari ERP)</i>
+</div>
+<br>
+<div align="center">
+  <img src="../aset/screenshot/readme_preview.png" width="600" style="border-radius: 8px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+  <br><i style="font-size: 13px;">Gambar: Pratinjau (Preview) Halaman README Repositori yang dirancang sebagai pusat panduan penginstalan.</i>
 </div>
 
 ---
 
 **Kesimpulan Akhir Proyek:**  
-Proyek pembangunan "Aplikasi Manajemen Keuangan Bidadari ERP" dinyatakan **RAMPUNG 100%**. 
-
-Seluruh tahapan siklus pengembangan dari mulai Perancangan UI/UX (Minggu 1), Terjemahan Frontend (Minggu 2), Suntikan Logika Database (Minggu 3), hingga Pengujian dan Rilis APK (Minggu 4) telah kami eksekusi sesuai standar *Software Engineering* industri. Aplikasi ini berdiri kokoh, aman, fungsional, dan sepenuhnya siap dipresentasikan!
+Pembangunan "Aplikasi Manajemen Keuangan Bidadari ERP" dinyatakan **RAMPUNG 100%**. Seluruh tahapan perancangan UI/UX (Minggu 1), translasi Frontend (Minggu 2), penyuntikan Logika Firebase Cloud (Minggu 3), hingga Pengujian Mutu dan Kompilasi APK (Minggu 4) telah dieksekusi dengan presisi industri tinggi. Proyek ini resmi diselesaikan dan siap untuk dideklarasikan dalam presentasi akhir.
