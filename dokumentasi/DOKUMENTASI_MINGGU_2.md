@@ -1,24 +1,47 @@
-# Laporan Progres Tugas Akhir - Minggu 2
-**Fase:** Pengembangan Frontend (Fase Antarmuka)
+# TUGAS MINGGU 2: Pengembangan Frontend (Fase Antarmuka)
 
-Fokus minggu ini adalah mengubah desain konseptual (*mockup*) menjadi kode pemrograman Flutter yang nyata.
+**Nama Proyek:** Aplikasi Manajemen Keuangan  
+**Anggota Kelompok:**
+- Bagas Sujiwo (2306018)
+- Romy Zaenul Alam (2306019) 
+- Firman Nur Hakim (2305107) 
+
+**Mata Kuliah:** Pemrograman Mobile  
+
+---
 
 ## 1. Setup Proyek & Manajemen Repositori
-- **Inisiasi Proyek:** Proyek Flutter terbaru berhasil di-setup.
-- **Version Control:** Terhubung dengan aman ke GitHub.
-- **Struktur Folder (Clean Architecture):**
-  - `lib/screens/` (Halaman Antarmuka)
-  - `lib/widgets/` (Komponen UI *Reusable*)
-  - `lib/providers/` (State Management)
-  - `lib/models/` (Struktur Data)
+Proyek Flutter berhasil diinisiasi dengan arsitektur folder yang rapi dan terstruktur untuk memisahkan antarmuka (*screens*), manajemen status (*providers*), dan komponen (*widgets*). Seluruh pengerjaan telah diamankan menggunakan Git.
+
+```text
+Aplikasi-keuangan/
+├── android/
+├── aset/
+│   └── screenshot/
+├── lib/
+│   ├── models/
+│   ├── providers/
+│   ├── screens/
+│   ├── services/
+│   ├── widgets/
+│   ├── firebase_options.dart
+│   └── main.dart
+├── pubspec.yaml
+└── README.md
+```
 
 ## 2. Integrasi Aset Visual & Tipografi
-- **Logo:** Berhasil diintegrasikan ke dalam aset proyek.
-  <br><img src="../aset/screenshot/logo_bidadari.png" width="100" style="margin-top: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-- **Tipografi:** Menggunakan **Google Fonts** yang diatur secara terpusat pada `ThemeData` di `theme_provider.dart`.
+- **Logo Aplikasi:** Logo Bidadari ERP dimasukkan dengan sukses ke dalam direktori proyek.
+  <div align="center">
+    <img src="../aset/screenshot/logo_bidadari.png" width="200" style="margin: 10px 0; border-radius: 12px;">
+  </div>
+
+- **Tipografi:** Menggunakan **Google Fonts (Poppins)** untuk menghadirkan kesan modern dan elegan. Pengaturan *font* diaplikasikan secara terpusat pada sistem tema aplikasi.
+  <br>
+  <img src="../aset/screenshot/google_fonts.png" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); margin-top: 8px;">
 
 ## 3. Slicing UI (Implementasi Desain ke Kode)
-Desain dari Figma telah diterjemahkan ke dalam kode Flutter dengan presisi pixel dan responsif.
+Desain dari purwarupa Figma telah diterjemahkan menjadi kode Flutter yang nyata dan responsif. 
 
 <table border="0" width="100%" style="text-align: center; border-collapse: collapse; border: none;">
   <tr style="page-break-inside: avoid;">
@@ -44,23 +67,14 @@ Desain dari Figma telah diterjemahkan ke dalam kode Flutter dengan presisi pixel
 </table>
 
 ## 4. Sistem Navigasi (Routing)
-Menerapkan skema **Named Routes** terpusat agar perpindahan antar halaman lebih terstruktur, serta integrasi **Bottom Navigation Bar** untuk menu utama.
+Kami merancang perpindahan halaman secara terpusat menggunakan sistem rute (*Named Routes*), serta menanamkan **Bottom Navigation Bar** sebagai pusat kontrol antar-menu pelaporan, sehingga pengguna dapat berpindah bagian dengan sangat mulus.
 
-**Skema Routing di `main.dart`:**
-```dart
-routes: {
-  '/': (context) => const AuthWrapper(),
-  '/login': (context) => const LoginScreen(),
-  '/dashboard': (context) => const MainLayout(),
-  '/income_form': (context) => const IncomeFormScreen(),
-  '/expense_form': (context) => const ExpenseFormScreen(),
-  '/debt_form': (context) => const DebtFormScreen(),
-  '/debt_report': (context) => const DebtReportScreen(),
-  '/notification': (context) => const NotificationScreen(),
-}
-```
+<div align="center">
+  <img src="../aset/screenshot/bottom_nav.png" width="300" style="border-radius: 12px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+  <br><i style="font-size: 13px;">Gambar: Deretan tombol navigasi bawah (Home, Lap Kelapa, Lap Galon, Lap Kontrakan).</i>
+</div>
 
 ---
 
 **Kesimpulan Minggu 2:**  
-Fase *Frontend* rampung 100%. Antarmuka sudah berfungsi secara visual dan siap disambungkan dengan logika *Database* Firebase di minggu ketiga.
+Fase *Frontend* telah rampung 100%. Antarmuka aplikasi sudah berfungsi penuh secara visual dan siap untuk disambungkan dengan logika *database* Firebase pada pengerjaan minggu berikutnya.
