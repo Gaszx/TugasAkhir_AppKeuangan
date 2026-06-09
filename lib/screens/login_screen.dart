@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: theme.colorScheme.primary.withOpacity(0.1),
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(Icons.shield_outlined, size: 48, color: theme.colorScheme.primary),
+                        child: Image.asset('assets/images/logo_icon_bidadari.png', width: 48, height: 48),
                       ),
                       const SizedBox(height: 32),
                       Text(
