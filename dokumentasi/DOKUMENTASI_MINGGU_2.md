@@ -11,7 +11,10 @@
 ---
 
 ## 1. Setup Proyek & Manajemen Repositori
-Proyek Flutter berhasil diinisiasi dengan arsitektur folder yang rapi dan terstruktur untuk memisahkan antarmuka (*screens*), manajemen status (*providers*), dan komponen (*widgets*). Seluruh pengerjaan telah diamankan menggunakan Git.
+Proyek Flutter berhasil diinisiasi dengan arsitektur folder yang rapi dan terstruktur untuk memisahkan antarmuka (*screens*), manajemen status (*providers*), dan komponen (*widgets*). Seluruh pengerjaan telah diamankan menggunakan Git dan dapat diakses langsung pada repositori berikut:
+
+**🔗 Link Repositori Github:** [Gaszx/TugasAkhir_AppKeuangan](https://github.com/Gaszx/TugasAkhir_AppKeuangan)
+
 
 ```text
 Aplikasi-keuangan/
