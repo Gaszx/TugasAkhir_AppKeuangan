@@ -10,15 +10,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
-            padding: 40px 20px;
-            box-sizing: border-box;
+            overflow: hidden; /* Mencegah web browser di-scroll */
             font-family: sans-serif;
             color: white;
+        }
+
+        #scale-wrapper {
+            display: flex;
             flex-direction: row;
+            align-items: center;
             gap: 40px;
-            overflow-y: auto;
+            transform-origin: center center;
+            transition: transform 0.1s;
         }
         
         .device-frame {
@@ -29,7 +34,7 @@
             border-radius: 45px;
             border: 12px solid #1E293B;
             position: relative;
-            overflow: hidden;
+            overflow: hidden; /* Batas luar HP */
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
@@ -39,13 +44,27 @@
             position: absolute;
             top: 0;
             left: 0;
-            background-size: 100% 100%;
+            background-size: 100% auto; /* Auto height untuk gambar panjang */
             background-repeat: no-repeat;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s ease-in-out;
+            overflow-y: auto; /* Scroll HP bagian dalam */
+            overflow-x: hidden;
         }
         
+        /* Menyembunyikan scrollbar bawaan browser di dalam HP agar elegan */
+        .screen::-webkit-scrollbar {
+            width: 5px;
+        }
+        .screen::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .screen::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
         .screen.active {
             opacity: 1;
             pointer-events: auto;
@@ -54,8 +73,17 @@
         .hitbox {
             position: absolute;
             cursor: pointer;
-            /* Uncomment baris di bawah ini untuk melihat area kotak merah saat perbaikan koordinat */
+            z-index: 50;
             /* background: rgba(255, 0, 0, 0.3); border: 1px solid red; box-sizing: border-box; */
+        }
+
+        /* DUMMY CONTENT UNTUK MENGAKTIFKAN SCROLL DI DALAM HP */
+        .scroll-extender {
+            height: 1050px; /* Lebihi 844px agar bisa di-scroll */
+            width: 100%;
+            pointer-events: none;
+            position: absolute;
+            top: 0; left: 0;
         }
 
         /* --- BOTTOM SHEET --- */
@@ -84,168 +112,200 @@
 
         .controls { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; }
         button.btn-flow {
-            padding: 10px 20px; border-radius: 8px; border: none; background: #0D9488; color: white; cursor: pointer; font-weight: bold;
+            padding: 12px 24px; border-radius: 12px; border: none; background: #0D9488; color: white; cursor: pointer; font-weight: bold;
+            font-size: 16px; transition: transform 0.1s, background 0.2s; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.4);
         }
-        button.btn-flow:hover { background: #0F766E; }
+        button.btn-flow:hover { background: #0F766E; transform: scale(1.05); }
+        button.btn-flow:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
 
-
-
-    <!-- BINGKAI HP -->
-    <div class="device-frame">
-        
-        <!-- SCREEN 01: LOGIN -->
-        <div id="screen-01" class="screen active" style="background-image: url('aset/screenshot/Dark_01_LoginScreen.png');">
-            <!-- Numpad Login -->
-            <div class="hitbox" style="top: 300px; left: 50px; width: 290px; height: 350px;" onclick="goTo('screen-02')" title="Klik PIN untuk Login"></div>
-        </div>
-
-        <!-- SCREEN 02: DASHBOARD -->
-        <div id="screen-02" class="screen" style="background-image: url('aset/screenshot/Dark_02_DashboardScreen.png');">
-            <!-- Top App Bar -->
-            <div class="hitbox" style="top: 30px; left: 10px; width: 200px; height: 60px;" onclick="alert('Profile Menu / Logout. (Screen 11 tidak tersedia dalam paket screenshot saat ini)')" title="Profile & Logout"></div>
-            <!-- Top Right: Debt Report (Icon Kertas) -->
-            <div class="hitbox" style="top: 35px; left: 280px; width: 45px; height: 50px;" onclick="goTo('screen-09')" title="Laporan Utang"></div>
-            <!-- Top Right: Notifications (Icon Lonceng) -->
-            <div class="hitbox" style="top: 35px; left: 330px; width: 50px; height: 50px;" onclick="goTo('screen-10')" title="Notifikasi"></div>
+    <div id="scale-wrapper">
+        <!-- BINGKAI HP -->
+        <div class="device-frame">
             
-            <!-- Unit Bisnis Cards -->
-            <div class="hitbox" style="top: 420px; left: 20px; width: 110px; height: 130px;" onclick="goTo('screen-03')" title="Masuk ke Kelapa"></div>
-            <div class="hitbox" style="top: 420px; left: 140px; width: 110px; height: 130px;" onclick="goTo('screen-04')" title="Masuk ke Galon"></div>
-            <div class="hitbox" style="top: 420px; left: 260px; width: 110px; height: 130px;" onclick="goTo('screen-05')" title="Masuk ke Kontrakan"></div>
+            <!-- SCREEN 01: LOGIN -->
+            <div id="screen-01" class="screen active" style="background-image: url('aset/screenshot/Dark_01_LoginScreen.png');">
+                <div class="scroll-extender"></div>
+                <!-- Numpad Login -->
+                <div class="hitbox" style="top: 300px; left: 50px; width: 290px; height: 350px;" onclick="goTo('screen-02')" title="Klik PIN untuk Login"></div>
+            </div>
 
-            <!-- Teks "Lihat Semua" Utang -->
-            <div class="hitbox" style="top: 580px; left: 280px; width: 100px; height: 40px;" onclick="goTo('screen-09')" title="Lihat Semua Utang"></div>
-
-            <!-- Bottom Navigation Bar -->
-            <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px;" onclick="goTo('screen-02')" title="Tab Home"></div>
-            <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px;" onclick="goTo('screen-03')" title="Tab Kelapa"></div>
-            <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px;" onclick="goTo('screen-04')" title="Tab Galon"></div>
-            <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px;" onclick="goTo('screen-05')" title="Tab Kontrakan"></div>
-            
-            <!-- Center FAB (+) -->
-            <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%;" onclick="openBottomSheet()" title="Tambah Transaksi Baru"></div>
-        </div>
-
-        <!-- SCREEN 03: KELAPA REPORT -->
-        <div id="screen-03" class="screen" style="background-image: url('aset/screenshot/Dark_03_KelapaReportScreen.png');">
-            <!-- Back Button / Teks atas Kiri -->
-            <div class="hitbox" style="top: 30px; left: 10px; width: 100px; height: 50px;" onclick="goTo('screen-02')" title="Back"></div>
-            <!-- Bottom Nav & FAB -->
-            <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px;" onclick="goTo('screen-02')"></div>
-            <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px;" onclick="goTo('screen-03')"></div>
-            <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px;" onclick="goTo('screen-04')"></div>
-            <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px;" onclick="goTo('screen-05')"></div>
-            <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%;" onclick="openBottomSheet()"></div>
-        </div>
-
-        <!-- SCREEN 04: GALON REPORT -->
-        <div id="screen-04" class="screen" style="background-image: url('aset/screenshot/Dark_04_GalonReportScreen.png');">
-            <div class="hitbox" style="top: 30px; left: 10px; width: 100px; height: 50px;" onclick="goTo('screen-02')" title="Back"></div>
-            <!-- Bottom Nav & FAB -->
-            <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px;" onclick="goTo('screen-02')"></div>
-            <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px;" onclick="goTo('screen-03')"></div>
-            <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px;" onclick="goTo('screen-04')"></div>
-            <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px;" onclick="goTo('screen-05')"></div>
-            <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%;" onclick="openBottomSheet()"></div>
-        </div>
-
-        <!-- SCREEN 05: KONTRAKAN REPORT -->
-        <div id="screen-05" class="screen" style="background-image: url('aset/screenshot/Dark_05_KontrakanReportScreen.png');">
-             <!-- Tombol Tambah Pintu (+) di Kanan Atas -->
-             <div class="hitbox" style="top: 35px; left: 330px; width: 50px; height: 50px;" onclick="alert('Menu Tambah Pintu terbuka!')" title="Tambah Pintu"></div>
-             <!-- Tombol Pengeluaran Ops di tengah -->
-             <div class="hitbox" style="top: 380px; left: 20px; width: 350px; height: 60px;" onclick="goTo('screen-07')" title="Input Biaya Ops Kontrakan"></div>
-
-             <!-- Bottom Nav & FAB -->
-             <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px;" onclick="goTo('screen-02')"></div>
-             <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px;" onclick="goTo('screen-03')"></div>
-             <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px;" onclick="goTo('screen-04')"></div>
-             <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px;" onclick="goTo('screen-05')"></div>
-             <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%;" onclick="openBottomSheet()"></div>
-        </div>
-
-        <!-- SCREEN 06: INCOME FORM -->
-        <div id="screen-06" class="screen" style="background-image: url('aset/screenshot/Dark_06_IncomeFormScreen.png');">
-            <!-- Back Button -->
-            <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px;" onclick="goTo('screen-02')" title="Back"></div>
-            <!-- Cancel / Save Buttons -->
-            <div class="hitbox" style="top: 700px; left: 20px; width: 350px; height: 60px;" onclick="goTo('screen-02')" title="Save Income"></div>
-        </div>
-
-        <!-- SCREEN 07: EXPENSE FORM -->
-        <div id="screen-07" class="screen" style="background-image: url('aset/screenshot/Dark_07_ExpenseFormScreen.png');">
-            <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px;" onclick="goTo('screen-02')" title="Back"></div>
-            <div class="hitbox" style="top: 700px; left: 20px; width: 350px; height: 60px;" onclick="goTo('screen-02')" title="Save Expense"></div>
-        </div>
-
-        <!-- SCREEN 08: DEBT FORM -->
-        <div id="screen-08" class="screen" style="background-image: url('aset/screenshot/Dark_08_DebtFormScreen.png');">
-            <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px;" onclick="goTo('screen-02')" title="Back"></div>
-            <div class="hitbox" style="top: 700px; left: 20px; width: 350px; height: 60px;" onclick="goTo('screen-02')" title="Save Debt"></div>
-        </div>
-
-        <!-- SCREEN 09: DEBT REPORT -->
-        <div id="screen-09" class="screen" style="background-image: url('aset/screenshot/Dark_09_DebtReportScreen.png');">
-            <!-- Back Button -->
-            <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px;" onclick="goTo('screen-02')" title="Back"></div>
-            <!-- Tombol Tab Piutang & Utang Pribadi -->
-            <div class="hitbox" style="top: 100px; left: 20px; width: 170px; height: 50px;" title="Tab Piutang Pelanggan"></div>
-            <div class="hitbox" style="top: 100px; left: 200px; width: 170px; height: 50px;" title="Tab Utang Pribadi"></div>
-        </div>
-
-        <!-- SCREEN 10: NOTIFICATION -->
-        <div id="screen-10" class="screen" style="background-image: url('aset/screenshot/Dark_10_NotificationScreen.png');">
-            <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px;" onclick="goTo('screen-02')" title="Back"></div>
-        </div>
-
-        <!-- TRANSAKSI OVERLAY (BOTTOM SHEET SIMULATION) -->
-        <div id="scrim" onclick="closeBottomSheet()"></div>
-        <div id="bottom-sheet">
-            <div style="padding: 24px; color: white;">
-                <div style="width: 40px; height: 4px; background: rgba(255,255,255,0.2); margin: 0 auto 24px auto; border-radius: 2px;"></div>
-                <h3 style="margin: 0 0 8px 0; font-size: 20px;">Catat Transaksi</h3>
-                <p style="margin: 0 0 24px 0; font-size: 14px; color: #94A3B8;">Pilih jenis pencatatan yang ingin Anda masukkan.</p>
+            <!-- SCREEN 02: DASHBOARD -->
+            <div id="screen-02" class="screen" style="background-image: url('aset/screenshot/Dark_02_DashboardScreen.png');">
+                <div class="scroll-extender"></div>
+                <!-- Top App Bar -->
+                <div class="hitbox" style="top: 30px; left: 10px; width: 200px; height: 60px;" onclick="alert('Profile Menu / Logout. (Screen 11 tidak tersedia dalam paket screenshot saat ini)')" title="Profile & Logout"></div>
+                <!-- Top Right: Debt Report (Icon Kertas) -->
+                <div class="hitbox" style="top: 35px; left: 280px; width: 45px; height: 50px;" onclick="goTo('screen-09')" title="Laporan Utang"></div>
+                <!-- Top Right: Notifications (Icon Lonceng) -->
+                <div class="hitbox" style="top: 35px; left: 330px; width: 50px; height: 50px;" onclick="goTo('screen-10')" title="Notifikasi"></div>
                 
-                <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-                    <!-- Income Option -->
-                    <div style="flex: 1; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 20px 8px; text-align: center; cursor: pointer;" onclick="goTo('screen-06'); closeBottomSheet();">
-                        <div style="width: 48px; height: 48px; background: #0F172A; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 12px auto;">
-                            <span style="font-size: 20px; color: #10B981;">⬇️</span>
-                        </div>
-                        <div style="color: #10B981; font-weight: bold; font-size: 14px;">Pemasukan</div>
-                    </div>
-                    <!-- Expense Option -->
-                    <div style="flex: 1; background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 20px 8px; text-align: center; cursor: pointer;" onclick="goTo('screen-07'); closeBottomSheet();">
-                        <div style="width: 48px; height: 48px; background: #0F172A; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 12px auto;">
-                            <span style="font-size: 20px; color: #EF4444;">⬆️</span>
-                        </div>
-                        <div style="color: #EF4444; font-weight: bold; font-size: 14px;">Pengeluaran</div>
-                    </div>
-                </div>
+                <!-- Unit Bisnis Cards -->
+                <div class="hitbox" style="top: 420px; left: 20px; width: 110px; height: 130px;" onclick="goTo('screen-03')" title="Masuk ke Kelapa"></div>
+                <div class="hitbox" style="top: 420px; left: 140px; width: 110px; height: 130px;" onclick="goTo('screen-04')" title="Masuk ke Galon"></div>
+                <div class="hitbox" style="top: 420px; left: 260px; width: 110px; height: 130px;" onclick="goTo('screen-05')" title="Masuk ke Kontrakan"></div>
+
+                <!-- Teks "Lihat Semua" Utang -->
+                <div class="hitbox" style="top: 580px; left: 280px; width: 100px; height: 40px;" onclick="goTo('screen-09')" title="Lihat Semua Utang"></div>
+
+                <!-- Bottom Navigation Bar (Fixed Pos, moved outside scroll extender logic or just keep relative to top) -->
+                <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-02')" title="Tab Home"></div>
+                <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-03')" title="Tab Kelapa"></div>
+                <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-04')" title="Tab Galon"></div>
+                <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-05')" title="Tab Kontrakan"></div>
                 
-                <!-- Debt Option -->
-                <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 16px; padding: 20px 8px; text-align: center; cursor: pointer; width: 60%; margin: 0 auto;" onclick="goTo('screen-08'); closeBottomSheet();">
-                    <div style="width: 48px; height: 48px; background: #0F172A; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 12px auto;">
-                        <span style="font-size: 20px; color: #F59E0B;">💼</span>
+                <!-- Center FAB (+) -->
+                <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%; position: fixed;" onclick="openBottomSheet()" title="Tambah Transaksi Baru"></div>
+            </div>
+
+            <!-- SCREEN 03: KELAPA REPORT -->
+            <div id="screen-03" class="screen" style="background-image: url('aset/screenshot/Dark_03_KelapaReportScreen.png');">
+                <div class="scroll-extender"></div>
+                <!-- Back Button / Teks atas Kiri -->
+                <div class="hitbox" style="top: 30px; left: 10px; width: 100px; height: 50px; position: fixed;" onclick="goTo('screen-02')" title="Back"></div>
+                <!-- Bottom Nav & FAB -->
+                <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-02')"></div>
+                <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-03')"></div>
+                <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-04')"></div>
+                <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-05')"></div>
+                <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%; position: fixed;" onclick="openBottomSheet()"></div>
+            </div>
+
+            <!-- SCREEN 04: GALON REPORT -->
+            <div id="screen-04" class="screen" style="background-image: url('aset/screenshot/Dark_04_GalonReportScreen.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 30px; left: 10px; width: 100px; height: 50px; position: fixed;" onclick="goTo('screen-02')" title="Back"></div>
+                <!-- Bottom Nav & FAB -->
+                <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-02')"></div>
+                <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-03')"></div>
+                <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-04')"></div>
+                <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-05')"></div>
+                <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%; position: fixed;" onclick="openBottomSheet()"></div>
+            </div>
+
+            <!-- SCREEN 05: KONTRAKAN REPORT -->
+            <div id="screen-05" class="screen" style="background-image: url('aset/screenshot/Dark_05_KontrakanReportScreen.png');">
+                <div class="scroll-extender"></div>
+                <!-- Tombol Tambah Pintu (+) di Kanan Atas -->
+                <div class="hitbox" style="top: 35px; left: 330px; width: 50px; height: 50px; position: fixed;" onclick="alert('Menu Tambah Pintu terbuka!')" title="Tambah Pintu"></div>
+                <!-- Tombol Pengeluaran Ops di tengah -->
+                <div class="hitbox" style="top: 380px; left: 20px; width: 350px; height: 60px;" onclick="goTo('screen-07')" title="Input Biaya Ops Kontrakan"></div>
+
+                <!-- Bottom Nav & FAB -->
+                <div class="hitbox" style="top: 775px; left: 15px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-02')"></div>
+                <div class="hitbox" style="top: 775px; left: 105px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-03')"></div>
+                <div class="hitbox" style="top: 775px; left: 205px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-04')"></div>
+                <div class="hitbox" style="top: 775px; left: 295px; width: 80px; height: 60px; position: fixed;" onclick="goTo('screen-05')"></div>
+                <div class="hitbox" style="top: 735px; left: 160px; width: 70px; height: 70px; border-radius: 50%; position: fixed;" onclick="openBottomSheet()"></div>
+            </div>
+
+            <!-- SCREEN 06: INCOME FORM -->
+            <div id="screen-06" class="screen" style="background-image: url('aset/screenshot/Dark_06_IncomeFormScreen.png');">
+                <div class="scroll-extender"></div>
+                <!-- Back Button -->
+                <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px; position: fixed;" onclick="goTo('screen-02')" title="Back"></div>
+                <!-- Cancel / Save Buttons -->
+                <div class="hitbox" style="top: 700px; left: 20px; width: 350px; height: 60px; position: fixed;" onclick="goTo('screen-02')" title="Save Income"></div>
+            </div>
+
+            <!-- SCREEN 07: EXPENSE FORM -->
+            <div id="screen-07" class="screen" style="background-image: url('aset/screenshot/Dark_07_ExpenseFormScreen.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px; position: fixed;" onclick="goTo('screen-02')" title="Back"></div>
+                <div class="hitbox" style="top: 700px; left: 20px; width: 350px; height: 60px; position: fixed;" onclick="goTo('screen-02')" title="Save Expense"></div>
+            </div>
+
+            <!-- SCREEN 08: DEBT FORM -->
+            <div id="screen-08" class="screen" style="background-image: url('aset/screenshot/Dark_08_DebtFormScreen.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px; position: fixed;" onclick="goTo('screen-02')" title="Back"></div>
+                <div class="hitbox" style="top: 700px; left: 20px; width: 350px; height: 60px; position: fixed;" onclick="goTo('screen-02')" title="Save Debt"></div>
+            </div>
+
+            <!-- SCREEN 09: DEBT REPORT -->
+            <div id="screen-09" class="screen" style="background-image: url('aset/screenshot/Dark_09_DebtReportScreen.png');">
+                <div class="scroll-extender"></div>
+                <!-- Back Button -->
+                <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px; position: fixed;" onclick="goTo('screen-02')" title="Back"></div>
+                <!-- Tombol Tab Piutang & Utang Pribadi -->
+                <div class="hitbox" style="top: 100px; left: 20px; width: 170px; height: 50px;" title="Tab Piutang Pelanggan"></div>
+                <div class="hitbox" style="top: 100px; left: 200px; width: 170px; height: 50px;" title="Tab Utang Pribadi"></div>
+            </div>
+
+            <!-- SCREEN 10: NOTIFICATION -->
+            <div id="screen-10" class="screen" style="background-image: url('aset/screenshot/Dark_10_NotificationScreen.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 30px; left: 10px; width: 70px; height: 50px; position: fixed;" onclick="goTo('screen-02')" title="Back"></div>
+            </div>
+
+            <!-- TRANSAKSI OVERLAY (BOTTOM SHEET SIMULATION) -->
+            <div id="scrim" onclick="closeBottomSheet()"></div>
+            <div id="bottom-sheet">
+                <div style="padding: 24px; color: white;">
+                    <div style="width: 40px; height: 4px; background: rgba(255,255,255,0.2); margin: 0 auto 24px auto; border-radius: 2px;"></div>
+                    <h3 style="margin: 0 0 8px 0; font-size: 20px;">Catat Transaksi</h3>
+                    <p style="margin: 0 0 24px 0; font-size: 14px; color: #94A3B8;">Pilih jenis pencatatan yang ingin Anda masukkan.</p>
+                    
+                    <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                        <!-- Income Option -->
+                        <div style="flex: 1; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 20px 8px; text-align: center; cursor: pointer;" onclick="goTo('screen-06'); closeBottomSheet();">
+                            <div style="width: 48px; height: 48px; background: #0F172A; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 12px auto;">
+                                <span style="font-size: 20px; color: #10B981;">⬇️</span>
+                            </div>
+                            <div style="color: #10B981; font-weight: bold; font-size: 14px;">Pemasukan</div>
+                        </div>
+                        <!-- Expense Option -->
+                        <div style="flex: 1; background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 20px 8px; text-align: center; cursor: pointer;" onclick="goTo('screen-07'); closeBottomSheet();">
+                            <div style="width: 48px; height: 48px; background: #0F172A; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 12px auto;">
+                                <span style="font-size: 20px; color: #EF4444;">⬆️</span>
+                            </div>
+                            <div style="color: #EF4444; font-weight: bold; font-size: 14px;">Pengeluaran</div>
+                        </div>
                     </div>
-                    <div style="color: #F59E0B; font-weight: bold; font-size: 14px;">Utang Pribadi / Cicilan</div>
+                    
+                    <!-- Debt Option -->
+                    <div style="background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 16px; padding: 20px 8px; text-align: center; cursor: pointer; width: 60%; margin: 0 auto;" onclick="goTo('screen-08'); closeBottomSheet();">
+                        <div style="width: 48px; height: 48px; background: #0F172A; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 12px auto;">
+                            <span style="font-size: 20px; color: #F59E0B;">💼</span>
+                        </div>
+                        <div style="color: #F59E0B; font-weight: bold; font-size: 14px;">Utang Pribadi / Cicilan</div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-    </div>
-
-    <div class="controls">
-        <button class="btn-flow" onclick="goTo('screen-01')">🔄 Restart Flow</button>
+        <div class="controls">
+            <button class="btn-flow" onclick="goTo('screen-01')">🔄 Restart Flow</button>
+        </div>
     </div>
 
     <script>
+        // FUNGSI SCALING UNTUK MENYESUAIKAN HP DENGAN LAYAR APAPUN
+        function resizeLayout() {
+            const wrapper = document.getElementById('scale-wrapper');
+            // HP + Jarak + Tombol = sekitar 600px width. HP Tinggi = 844px + border/margin = 900px
+            const scaleX = window.innerWidth / 650;
+            const scaleY = window.innerHeight / 900;
+            let scale = Math.min(scaleX, scaleY);
+            
+            // Jangan perbesar lebih dari ukuran asli, hanya perkecil jika layar terlalu sempit
+            if (scale > 1) scale = 1; 
+            
+            wrapper.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeLayout);
+        resizeLayout(); // Inisiasi pertama kali
+
         function goTo(screenId) {
             const screens = document.querySelectorAll('.screen');
-            screens.forEach(s => s.classList.remove('active'));
+            screens.forEach(s => {
+                s.classList.remove('active');
+                s.scrollTop = 0; // Reset scroll ke atas tiap kali pindah layar
+            });
             const target = document.getElementById(screenId);
             if (target) target.classList.add('active');
         }
