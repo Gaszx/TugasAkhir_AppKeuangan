@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidadari ERP - Interactive Prototype v4</title>
+    <style>
+        body {
+            background-color: #0F172A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: sans-serif;
+            color: white;
+        }
+
+        #scale-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            transform-origin: center center;
+            transition: transform 0.1s;
+        }
+        
+        .device-frame {
+            width: 409px;
+            height: 886px;
+            flex-shrink: 0;
+            background: #000;
+            border-radius: 45px;
+            border: 12px solid #1E293B;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-in-out;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        .screen::-webkit-scrollbar {
+            width: 5px;
+        }
+        .screen::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .screen::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .screen.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .hitbox {
+            position: absolute;
+            cursor: pointer;
+            z-index: 50;
+            /* Uncomment line below to debug hitboxes */
+            /* background: rgba(255, 0, 0, 0.3); border: 1px solid red; box-sizing: border-box; */
+        }
+
+        .scroll-extender {
+            height: 1050px;
+            width: 100%;
+            pointer-events: none;
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        .controls { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 15px; }
+        button.btn-flow {
+            padding: 12px 24px; border-radius: 12px; border: none; background: #0D9488; color: white; cursor: pointer; font-weight: bold;
+            font-size: 16px; transition: transform 0.1s, background 0.2s; box-shadow: 0 4px 15px rgba(13, 148, 136, 0.4);
+        }
+        button.btn-flow:hover { background: #0F766E; transform: scale(1.05); }
+        button.btn-flow:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+    <div id="scale-wrapper">
+        <div class="device-frame">
+            
+            <!-- 1. SPLASH -->
+            <div id="screen-splash" class="screen active" style="background-image: url('figma_assets/Splash.png');">
+                <!-- Auto-redirect is handled in JS -->
+            </div>
+
+            <!-- 2. LOGIN -->
+            <div id="screen-login" class="screen" style="background-image: url('figma_assets/login.png');">
+                <!-- Numpad Login -->
+                <div class="hitbox" style="top: 350px; left: 50px; width: 300px; height: 350px;" onclick="goTo('screen-dashboard')" title="PIN Login"></div>
+            </div>
+
+            <!-- 3. DASHBOARD -->
+            <div id="screen-dashboard" class="screen" style="background-image: url('figma_assets/dashboard.png');">
+                <div class="scroll-extender"></div>
+                <!-- Top Icons -->
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px;" onclick="goTo('screen-profile')" title="Profile"></div>
+                <div class="hitbox" style="top: 40px; left: 280px; width: 50px; height: 60px;" onclick="goTo('screen-buku-hutang')" title="Buku Hutang"></div>
+                <div class="hitbox" style="top: 40px; left: 340px; width: 50px; height: 60px;" onclick="goTo('screen-notif')" title="Notifikasi"></div>
+                
+                <!-- Business Cards -->
+                <div class="hitbox" style="top: 420px; left: 20px; width: 110px; height: 130px;" onclick="goTo('screen-laporan-kelapa')" title="Kelapa"></div>
+                <div class="hitbox" style="top: 420px; left: 140px; width: 110px; height: 130px;" onclick="goTo('screen-laporan-galon')" title="Galon"></div>
+                <div class="hitbox" style="top: 420px; left: 260px; width: 110px; height: 130px;" onclick="goTo('screen-laporan-kontrakan')" title="Kontrakan"></div>
+
+                <!-- Bottom Navigation -->
+                <div class="hitbox" style="top: 790px; left: 0px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-dashboard')"></div>
+                <div class="hitbox" style="top: 790px; left: 102px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kelapa')"></div>
+                <div class="hitbox" style="top: 790px; left: 204px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-galon')"></div>
+                <div class="hitbox" style="top: 790px; left: 306px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kontrakan')"></div>
+                
+                <!-- FAB -->
+                <div class="hitbox" style="top: 750px; left: 170px; width: 70px; height: 70px; position: fixed; border-radius: 50%;" onclick="goTo('screen-popup-transaksi')"></div>
+            </div>
+
+            <!-- PROFILE MENU -->
+            <div id="screen-profile" class="screen" style="background-image: url('figma_assets/profile_menu.png');">
+                <!-- Click anywhere outside to close, or left area -->
+                <div class="hitbox" style="top: 0px; left: 0px; width: 150px; height: 886px;" onclick="goToBack()" title="Close Profile"></div>
+                <div class="hitbox" style="top: 40px; left: 340px; width: 50px; height: 50px;" onclick="goToBack()" title="Close"></div>
+            </div>
+
+            <!-- NOTIFIKASI -->
+            <div id="screen-notif" class="screen" style="background-image: url('figma_assets/notifikasi.png');">
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px;" onclick="goToBack()" title="Back"></div>
+            </div>
+
+            <!-- BUKU HUTANG -->
+            <div id="screen-buku-hutang" class="screen" style="background-image: url('figma_assets/buku hutang.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+            </div>
+
+            <!-- LAPORAN KELAPA -->
+            <div id="screen-laporan-kelapa" class="screen" style="background-image: url('figma_assets/laporan_kelapa.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goTo('screen-dashboard')" title="Back"></div>
+                <!-- Bottom Nav -->
+                <div class="hitbox" style="top: 790px; left: 0px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-dashboard')"></div>
+                <div class="hitbox" style="top: 790px; left: 102px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kelapa')"></div>
+                <div class="hitbox" style="top: 790px; left: 204px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-galon')"></div>
+                <div class="hitbox" style="top: 790px; left: 306px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kontrakan')"></div>
+                <div class="hitbox" style="top: 750px; left: 170px; width: 70px; height: 70px; position: fixed; border-radius: 50%;" onclick="goTo('screen-popup-transaksi')"></div>
+            </div>
+
+            <!-- LAPORAN GALON -->
+            <div id="screen-laporan-galon" class="screen" style="background-image: url('figma_assets/laporan_galon.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goTo('screen-dashboard')" title="Back"></div>
+                <!-- Bottom Nav -->
+                <div class="hitbox" style="top: 790px; left: 0px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-dashboard')"></div>
+                <div class="hitbox" style="top: 790px; left: 102px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kelapa')"></div>
+                <div class="hitbox" style="top: 790px; left: 204px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-galon')"></div>
+                <div class="hitbox" style="top: 790px; left: 306px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kontrakan')"></div>
+                <div class="hitbox" style="top: 750px; left: 170px; width: 70px; height: 70px; position: fixed; border-radius: 50%;" onclick="goTo('screen-popup-transaksi')"></div>
+            </div>
+
+            <!-- LAPORAN KONTRAKAN -->
+            <div id="screen-laporan-kontrakan" class="screen" style="background-image: url('figma_assets/laporan_kontrakan.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goTo('screen-dashboard')" title="Back"></div>
+                <!-- Bottom Nav -->
+                <div class="hitbox" style="top: 790px; left: 0px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-dashboard')"></div>
+                <div class="hitbox" style="top: 790px; left: 102px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kelapa')"></div>
+                <div class="hitbox" style="top: 790px; left: 204px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-galon')"></div>
+                <div class="hitbox" style="top: 790px; left: 306px; width: 102px; height: 96px; position: fixed;" onclick="goTo('screen-laporan-kontrakan')"></div>
+                <div class="hitbox" style="top: 750px; left: 170px; width: 70px; height: 70px; position: fixed; border-radius: 50%;" onclick="goTo('screen-popup-transaksi')"></div>
+            </div>
+
+            <!-- POPUP TRANSAKSI -->
+            <div id="screen-popup-transaksi" class="screen" style="background-image: url('figma_assets/popup_transaksi.png');">
+                <!-- Close Popup Area (Top half) -->
+                <div class="hitbox" style="top: 0px; left: 0px; width: 409px; height: 500px;" onclick="goToBack()" title="Tutup"></div>
+                
+                <!-- Buttons -->
+                <div class="hitbox" style="top: 550px; left: 40px; width: 150px; height: 140px;" onclick="goToPemasukan()" title="Pemasukan"></div>
+                <div class="hitbox" style="top: 550px; left: 210px; width: 150px; height: 140px;" onclick="goToPengeluaran()" title="Pengeluaran"></div>
+                <div class="hitbox" style="top: 710px; left: 80px; width: 250px; height: 80px;" onclick="goTo('screen-input-kewajiban')" title="Kewajiban / Utang"></div>
+            </div>
+
+            <!-- INPUT PEMASUKAN -->
+            <div id="screen-input-pemasukan-kelapa" class="screen" style="background-image: url('figma_assets/input_pemasukan_kelapa.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+                <div class="hitbox" style="top: 760px; left: 20px; width: 369px; height: 60px; position: fixed;" onclick="goToBack()" title="Save"></div>
+            </div>
+            <div id="screen-input-pemasukan-galon" class="screen" style="background-image: url('figma_assets/input_pemasukan_galon.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+                <div class="hitbox" style="top: 760px; left: 20px; width: 369px; height: 60px; position: fixed;" onclick="goToBack()" title="Save"></div>
+            </div>
+            <div id="screen-input-pemasukan-kontrakan" class="screen" style="background-image: url('figma_assets/input_pemasukan_kontrakan.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+                <div class="hitbox" style="top: 760px; left: 20px; width: 369px; height: 60px; position: fixed;" onclick="goToBack()" title="Save"></div>
+            </div>
+
+            <!-- INPUT PENGELUARAN -->
+            <div id="screen-input-pengeluaran-kelapa" class="screen" style="background-image: url('figma_assets/input_pengeluaran_kelapa.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+                <div class="hitbox" style="top: 760px; left: 20px; width: 369px; height: 60px; position: fixed;" onclick="goToBack()" title="Save"></div>
+            </div>
+            <div id="screen-input-pengeluaran-galon" class="screen" style="background-image: url('figma_assets/input_pengeluaran_galon.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+                <div class="hitbox" style="top: 760px; left: 20px; width: 369px; height: 60px; position: fixed;" onclick="goToBack()" title="Save"></div>
+            </div>
+            <div id="screen-input-pengeluaran-kontrakan" class="screen" style="background-image: url('figma_assets/input_pengeluaran_kontrakan.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+                <div class="hitbox" style="top: 760px; left: 20px; width: 369px; height: 60px; position: fixed;" onclick="goToBack()" title="Save"></div>
+            </div>
+
+            <!-- INPUT KEWAJIBAN -->
+            <div id="screen-input-kewajiban" class="screen" style="background-image: url('figma_assets/input_kewajiban.png');">
+                <div class="scroll-extender"></div>
+                <div class="hitbox" style="top: 40px; left: 10px; width: 60px; height: 60px; position: fixed;" onclick="goToBack()" title="Back"></div>
+                <div class="hitbox" style="top: 760px; left: 20px; width: 369px; height: 60px; position: fixed;" onclick="goToBack()" title="Save"></div>
+            </div>
+
+        </div>
+
+        <div class="controls">
+            <button class="btn-flow" onclick="goTo('screen-splash'); setTimeout(() => goTo('screen-login'), 1500);">🔄 Restart Flow</button>
+        </div>
+    </div>
+
+    <script>
+        function resizeLayout() {
+            const wrapper = document.getElementById('scale-wrapper');
+            const scaleX = window.innerWidth / 650;
+            const scaleY = window.innerHeight / 950;
+            let scale = Math.min(scaleX, scaleY);
+            if (scale > 1) scale = 1; 
+            wrapper.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener('resize', resizeLayout);
+        resizeLayout();
+
+        // State Management for Smart Routing
+        let currentContext = 'dashboard';
+        let previousScreen = 'screen-dashboard';
+        let activeScreen = 'screen-splash';
+
+        function goTo(screenId) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(s => {
+                s.classList.remove('active');
+                s.scrollTop = 0;
+            });
+            
+            if(screenId !== 'screen-popup-transaksi' && activeScreen !== screenId) {
+                // Don't save popup as previous to avoid back-loops
+                previousScreen = activeScreen;
+            }
+
+            const target = document.getElementById(screenId);
+            if (target) {
+                target.classList.add('active');
+                activeScreen = screenId;
+            }
+
+            // Update Context for smart FAB
+            if (screenId.includes('kelapa')) currentContext = 'kelapa';
+            else if (screenId.includes('galon')) currentContext = 'galon';
+            else if (screenId.includes('kontrakan')) currentContext = 'kontrakan';
+            else if (screenId === 'screen-dashboard') currentContext = 'dashboard';
+        }
+
+        function goToBack() {
+            // Default back behavior
+            if (previousScreen && previousScreen !== 'screen-splash' && previousScreen !== 'screen-login') {
+                goTo(previousScreen);
+            } else {
+                goTo('screen-dashboard');
+            }
+        }
+
+        function goToPemasukan() {
+            if (currentContext === 'galon') goTo('screen-input-pemasukan-galon');
+            else if (currentContext === 'kontrakan') goTo('screen-input-pemasukan-kontrakan');
+            else goTo('screen-input-pemasukan-kelapa');
+        }
+
+        function goToPengeluaran() {
+            if (currentContext === 'galon') goTo('screen-input-pengeluaran-galon');
+            else if (currentContext === 'kontrakan') goTo('screen-input-pengeluaran-kontrakan');
+            else goTo('screen-input-pengeluaran-kelapa');
+        }
+
+        // Auto transition for Splash Screen
+        setTimeout(() => {
+            if (document.getElementById('screen-splash').classList.contains('active')) {
+                goTo('screen-login');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
